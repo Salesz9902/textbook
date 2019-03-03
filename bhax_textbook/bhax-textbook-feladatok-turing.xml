@@ -17,8 +17,24 @@
         <para>
             Megoldás forrása:                
         </para>
+	<programlisting language="c"><![CDATA[Program procheating
+{
+	#include <stdio.h>
+	#include <omp.h>
+
+	int main()
+	{
+	#pragma omp parallel for
+	for (int i=0; i<10;i++)
+	{
+		i--;
+	}
+
+	}
+}]]></programlisting>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Tanulságok, tapasztalatok, magyarázat:
+	Azt, hogy a program a processzor összes magját kihasználja, OpenMP segítségével oldottam meg. Ez nagyobb programoknál alapszabály, hogy gondoskodjunk a processzor teljes kihasználtságáról.
         </para>            
     </section>        
         
@@ -32,7 +48,7 @@
         </para>
         <para>
             Megoldás forrása:  tegyük fel, hogy akkora haxorok vagyunk, hogy meg tudjuk írni a <function>Lefagy</function>
-            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne vlgtelen ciklus:              
+            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne végtelen ciklus:              
         </para>
         <programlisting language="c"><![CDATA[Program T100
 {
@@ -120,6 +136,43 @@ false]]></screen>
         <para>
             Megoldás forrása:  
         </para>
+        <programlisting language="c"><![CDATA[Program procheating
+{
+	#include <stdio.h>
+
+        int main()
+        {
+        //change the values with an extra variable
+        int a, b, c;
+        a=2;
+        b=5;
+        c=0;
+
+        //before the trade
+        printf("csere elott:\na=%d, b=%d\n",a,b);
+        c=a;
+        a=b;
+        b=c;
+        //after the trade
+        printf("csere utan:\na=%d, b=%d\n",a,b);
+
+        //no extra variable used..
+        //change values with exor
+        a=3;
+        b=8;
+
+        //values before the trade
+        printf("\ncsere exorral:\n");
+        printf("csere elott:\na=%d, b=%d\n",a,b);
+
+        a=a^b;
+        b=a^b;
+        a=a^b;
+
+        printf("csere utan:\na=%d, b=%d\n",a,b);
+        }
+
+}]]></programlisting>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>
@@ -136,7 +189,7 @@ false]]></screen>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/labdapattogas">https://bhaxor.blog.hu/2018/08/28/labdapattogas</link>
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bouncingball.c">https://github.com/Salesz9902/prog1/blob/master/bouncingball.c</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
@@ -153,7 +206,7 @@ false]]></screen>
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>
+            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bogomips.c">https://github.com/Salesz9902/prog1/blob/master/bogomips.c</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat... 
