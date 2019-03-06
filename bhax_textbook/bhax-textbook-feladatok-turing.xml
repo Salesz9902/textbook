@@ -165,17 +165,33 @@ false]]></screen>
         printf("\ncsere exorral:\n");
         printf("csere elott:\na=%d, b=%d\n",a,b);
 
-        a=a^b;
-        b=a^b;
-        a=a^b;
+        a=a+b;
+        b=a-b;
+        a=a-b;
 
         printf("csere utan:\na=%d, b=%d\n",a,b);
         }
 
 }]]></programlisting>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Tanulságok, tapasztalatok, magyarázat:
         </para>
+            <para>
+            Mint fent látható, először segédváltozóval oldom meg a cserét, aztán segédváltozó használata nélkül, művelettel(összeadás, kivonás).
+            </para>
+            <para>
+                Jelen esetben a műveletekkel való csere előtt, az <function>a</function> értéke 3, a <function>b</function> értéke 8. Hogyan is zajlik pontosan itt a csere?
+            </para>
+            <para>
+            Így:
+            </para>
+            <programlisting>
+            a = 3
+            b = 8
+            a = a + b -> a = 11 (3+8)
+            b = a - b -> b = 3 (11-8)
+            a = a - b -> a = 8 (11-3)
+            </programlisting>
     </section>                     
 
     <section>
@@ -193,6 +209,18 @@ false]]></screen>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
+        </para>
+        <para>
+            Ahhoz, hogy a programot megfelelően tudjuk fordítani, így kell tennünk:
+            <programlisting>
+            gcc "programneve" -o "futtathatoneve" -lncurses
+            </programlisting>
+        </para>
+        <para>
+            Ahhoz, pedig, hogy tudjuk használni a -lncurses kapcsolót, telepítenünk kell a libncurses5-dev-et. Mégpedig így:
+            <programlisting>
+                sudo apt-get install libncurses5-dev
+            </programlisting>
         </para>
     </section>                     
 
@@ -223,7 +251,7 @@ false]]></screen>
             Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""></link>
+            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/pagerank.c">https://github.com/Salesz9902/prog1/blob/master/pagerank.c</link>
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
