@@ -14,7 +14,26 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp</link>            
+        </para>
+        <para>
+            A Mandelbrot-halmaz a komplex számsíkon különböző pontok halmaza. Van rá egy rekurzív sorozat, amely abszolút értékben korlátos.
+        </para> 
+        <para>
+            A rekurzív sorozat az alábbi:
+            <function>
+                x<subscript>n+1</subscript>:=(x<subscript>n</subscript>)<superscript>2</superscript> + c
+            </function>
+        </para>
+        <para>
+            A fenti C++ programban a Mandelbrot-halmazt fogjuk ábrázolni, mégpedig egy <code>.png</code> kiterjesztésű képen.
+        </para>
+        <para>
+            Miután lefordítottuk a kódunkat a következőképpen:
+            <programlisting>
+                g++ mandelbrot.cpp -lpng -o mandel
+            </programlisting>
+            A forráskódban látszik, hogy futtatás után kapunk egy képet kimenet.png néven egész érdekes eredménnyel.
         </para>
     </section>        
         
@@ -27,7 +46,15 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp</link>       
+        </para>
+        <para>
+            Ezzel a programmal szintén a Mandelbrot-halmazt ábrázoljuk, viszont itt már <code>std::complex</code> osztállyal tesszük meg struktúra alkalmazása helyett.
+            Miután fordítottuk, itt is ugyanazt a képet láthatjuk futtatásnál, mint az előbbinél, csupán a forráskód van másképp kivitelezve.
+        </para> 
+        <para>
+            Itt elhagyjuk a struktúra használatát, helyette osztályt használunk. Talán a struktúra használata talán előnyösebb bizonyos szempontokból, bár egyáltalán
+            nincs köztük olyan nagy különbség, hogy erős okunk legyen rá.
         </para>
     </section>        
                 
@@ -39,11 +66,18 @@
             Megoldás videó: <link xlink:href="https://youtu.be/IJMbgRzY76E">https://youtu.be/IJMbgRzY76E</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/biomorf.cpp">https://github.com/salesz9902/prog1/blob/master/biomorf.cpp</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>                        
+            A biomorfok jelentősen közel állnak a Mandelbrot-halmazhoz, ugyanis itt szintén a komplex számsíkkal dolgozik a programunk.
+        </para>      
+        <para>
+            Programunk fordítása után, a következőképpen futtassuk:
+            <programlisting>
+                ./bmorf bmorf.png 800 800 10 -2 2 -2 2 .285 0 10
+            </programlisting>
+            A fenti esetben ismét egy <code>png</code> kiterjesztésű fájlt fogunk kapni, mégpedig bmorf.png néven. Itt már sokkal színgazdagabb formát fogunk kapni, ami picit látványosabb is.
+        </para>                  
     </section>                     
 
     <section>
@@ -73,7 +107,22 @@
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/salesz9902/prog1/tree/master/mandelzoom">https://github.com/salesz9902/prog1/tree/master/mandelzoom</link>
+        </para>
+        <para>
+            Ebben a feladatban egy GUI-t fogunk létrehozni a Qt Creator szoftverrel. (Ez egy multiplatformos keretrendszer, amit épp erre (is) találtak ki.)
+        </para>
+        <para>
+            Tehát itt arról van szó, hogy a Qt Creatorban létre tudunk könnyen hozni egy grafikus felületet az előző C++ kódunkhoz, a Mandelbrot-hoz.
+        </para>
+        <para>
+            YouTube-on rengeteg oktatóvideót találhatunk a Qt Creator szoftverről. Itt is van egy:
+        </para>
+        <para>
+            <link href="https://www.youtube.com/watch?v=3SIj6zL6mmA">https://www.youtube.com/watch?v=3SIj6zL6mmA</link>
+        </para>
+        <para>
+            Ebből a videóból már tényleg gond nélkül elindulhatunk egy úton a GUI szerkesztés felé. 
         </para>
     </section>                     
                                                                                                                                                                             

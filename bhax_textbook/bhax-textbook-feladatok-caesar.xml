@@ -6,7 +6,7 @@
         </keywordset>
     </info>
     <section>
-        <title><type>int ***</type> háromszögmátrix</title>
+        <title><type>double **</type> háromszögmátrix</title>
         <para>
            
         </para>
@@ -14,11 +14,37 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c">https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Elsősorban megadjuk a mátrix sorainak számát. <function>int nr = 5</function>
+            Ezután deklarálunk egy valós értékre mutató mutatót.
+        </para>
+        <para>
+            Érdemes megfigyelnünk a <function>malloc</function> függvényt. 
+            5-ször 8 bájtot foglal le, és egy mutatót ad vissza. Ha 0 a méret, akkor a függvény NULL-t vagy egy egyéni mutatót ad vissza.
+            Az egyik <function>for</function> ciklusban <function>nr</function> alkalommal (azaz 5) a <function>malloc</function> segítségével
+            tm[i]-nek lefoglalja a helyet. Az elsőnél 8 bájtot, aztán 16-ot, aztán 32-t és így tovább az 5.-ig.
+        </para>
+        <para>
+            Futtatásnál a következő kimenetet láthatjuk:
+            <programlisting>
+                ./double_trimatrix 
+                0x7ffce6bf4d40
+                0x55eba3f9a670
+                0x55eba3f9a6a0
+                0.000000, 
+                1.000000, 2.000000, 
+                3.000000, 4.000000, 5.000000, 
+                6.000000, 7.000000, 8.000000, 9.000000, 
+                10.000000, 11.000000, 12.000000, 13.000000, 14.000000, 
+                0.000000, 
+                1.000000, 2.000000, 
+                3.000000, 4.000000, 5.000000, 
+                42.000000, 43.000000, 44.000000, 45.000000, 
+                10.000000, 11.000000, 12.000000, 13.000000, 14.000000
+            </programlisting>
+        </para>
     </section>        
     <section>
         <title>C EXOR titkosító</title>
@@ -29,10 +55,11 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exorencrypt.c">https://github.com/salesz9902/prog1/blob/master/exorencrypt.c</link>          
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Egy olyan program, amely általunk megadott kulcs, illetve karakterhossz által generál nekünk egy titkos szöveget, amit az előbb említett adatok felhasználásával tudunk feltörni.
+            Sok esetben hasznunkra lehet.
         </para>            
     </section>        
     <section>
@@ -59,10 +86,11 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:       <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exor.c">https://github.com/salesz9902/prog1/blob/master/exor.c</link>         
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ha tudjuk a kulcsot, illetve a karakterhosszat, könnyen feltörhetjük az exor titkosított kódot az adatok megadásával. Ezzel a módszerrel akár üzenhetünk is társunknak, 
+            illetve olyan szövegeket törhetünk vele, amiről tudjuk mi alapján lett titkosítva.
         </para>            
     </section>        
     <section>
@@ -89,11 +117,30 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/nlp.hpp">https://github.com/salesz9902/prog1/blob/master/nlp.hpp</link>
+            <link xlink:href="https://github.com/salesz9902/prog1/blob/master/main.cpp">https://github.com/salesz9902/prog1/blob/master/main.cpp</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Ezt a neuronmodellt a 20. század közepén használták először hatékony képfelismerő algoritmusként.
+        </para>
+        <para>
+            A perceptron hátránya, hogy kettőnél több réteg esetén a tanítása nehezen kivitelezhető, ugyanis azok a gradiensereszkedések, melyek egy veszteségfüggvényt próbálnak iteratív módon minimalizálni, 
+            és ehhez a függvény gradiensével számolnak.
+        </para>
+        <para>
+            A programot a következőképpen kell fordítanunk:
+            <programlisting>
+                g++ ql.hpp main.cpp -o perc -lpng
+            </programlisting>
+            Aztán futtatni a következőképp:
+            <programlisting>
+                ./perc (something.png)
+            </programlisting>
+            Használjuk például a mandelbrotnál legenerált png képünket.
+        </para>
+        <para>
+            A program a képünk alapján visszaad egy értéket. 
+        </para>
     </section>        
         
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

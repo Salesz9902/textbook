@@ -14,10 +14,21 @@
             Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:                
+            Megoldás forrása:       <link href="https://github.com/salesz9902/prog1/blob/master/binarunary.c">https://github.com/salesz9902/prog1/blob/master/binarunary.c</link>    
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A Turing-gép Alan Turing angol matematikushoz fűződik, hiszen ő dolgozta ki ennek fogalmát. Ez mindenféle folyamat precízebb megfogalmazására
+            lett kitalálva. Például eljárások, algoritmusok pontosabb leírására.
+        </para>
+        <para>
+            Írnom kell az unáris számrendszerről is. Ez egy nagyon egyszerű számrendszer, amiben vonalakkal ábrázoljuk a számokat.
+            Vegyük példának az 5-öt, ezt öt vonallal ábrázoljuk, a következőképpen:
+        </para> 
+            <para>
+                <code>||||| = 5</code>
+            </para>
+        <para>
+            A programunk annyit csinál, hogy bekér a felhasználótól egy decimális számot, majd azt kiírja unárisban, 5-ösével elválasztva.
         </para>
     </section>        
         
@@ -27,13 +38,14 @@
             Mutass be legalább két környezetfüggő generatív grammatikát, amely ezt a nyelvet generálja!
         </para>
         <para>
-            Megoldás videó:
+            Legyenek <emphasis>S, X, Y</emphasis> változók.
+            Legyen <emphasis>a, b, c</emphasis> konstansok.
         </para>
         <para>
-            Megoldás forrása:                
+            <emphasis>S -> abc, S->aXbc, Xb -> bX, Xc -> Ybcc, bY -> Yb, Ay > aax, Ay -> aa</emphasis>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Noam Chomsky szintén egy nyelvész volt, akinek a fenti nyelv grammatikáját is köszönhetjük. Érdekes módon rengeteg kiemelkedő foglalkozása mellett informatikus is volt.
         </para>
     </section>        
                 
@@ -45,13 +57,30 @@
             Majd mutass be olyan kódcsipeteket, amelyek adott szabvánnyal nem fordulnak (például C89), mással (például C99) igen.
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása:
+            <programlisting language="c"><![CDATA[Program hivatkozasinyelv
+               {
+                #include <complex.h>
+                #include <stdbool.h>
+
+                int main()
+                {
+                    long long int asd;
+                    complex stnum;
+                }
+           }]]></programlisting>  
         </para>
         <para>
-            Megoldás forrása:  
+            A C nyelvnek is vannak régebbi, illetve újabb változatai. Ilyen például a C89, illetve a C99. Összehasonlítva a C89-hez képest rengeteg változás történt a C99-ben.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Például új header fájlok jöttek be a C99-nél, ilyen a <function>complex.h</function>, <function>stdbool.h</function> vagy a <function>tgmath.h</function>
+        </para>
+        <para>
+            Jelentős újítás volt még például az új típusok: long long int, vagy a complex típus.
+        </para>
+        <para>
+            A fenti kód például C89-ben nem futna le, mivel még nem ismerné a header fájlokat, illetve a long long int típust...
         </para>
     </section>                     
 
@@ -63,13 +92,30 @@
             a feladat lényege, hogy lexert használjunk, azaz óriások vállán álljunk és ne kispályázzunk!
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
             Megoldás forrása:  
+            <programlisting language="c"><![CDATA[Program lexikalis
+                %{
+                #include <stdio.h>
+                int realnumbers = 0;
+                %}
+                digit	[0-9]
+                %%
+                {digit}*(\.{digit}+)?	{++realnumbers; 
+                    printf("[realnum=%s %f]", yytext, atof(yytext));}
+                %%
+                int
+                main ()
+                {
+                 yylex ();
+                 printf("The number of real numbers is %d\n", realnumbers);
+                 return 0;
+                }
+           }]]></programlisting>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A programnak megadjuk/definiáljuk a számokat, ezt a <code>[0-9]</code> sorban láthatjuk.
+            Itt azt adjuk meg, hogy bármely szám nullától kilencig, hányszor fordulhat elő.
+            Az ez utáni sorban a <code>.|\n {}</code> után következő utasításnál többit figyelmen kívül hagyjuk.
         </para>
     </section>                     
 
@@ -79,13 +125,20 @@
             Lexelj össze egy l33t ciphert!
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása: <link href="https://github.com/Salesz9902/prog1/blob/master/l33t.c">https://github.com/Salesz9902/prog1/blob/master/l33t.c</link> 
         </para>
         <para>
-            Megoldás forrása:  
+            A leet nyelv egy internetes nyelv. Bizonyos betű karaktereket számokkal helyettesítünk, amik erősen hasonlítanak a betűkhöz.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            <programlisting>
+            Például:
+            3 = E
+            4 = A
+            1 = l
+            7 = T
+            </programlisting>
+            A fentiek ismeretében rájöhetünk, hogy a leet szó => 1337 leet nyelven írva. De akár írhatjuk így is: l33t 
         </para>
     </section>                     
 
@@ -143,16 +196,11 @@
                 <programlisting><![CDATA[printf("%d %d", f(&a), a);]]></programlisting>            
             </listitem>
         </orderedlist>
-        <para>
-            Megoldás forrása:  
-        </para>
 
         <para>
-            Megoldás videó: 
-        </para>
-
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ebben a programban egy jelkezelővel "játszadozhatunk". Ha a program futása során megnyomjuk a Ctrl+C billentyűkombinációt,
+            aminek meg kellene szakítani a folyamatot, először nem fogja. Aztán majd mégegyszeri lenyomás után már másképp veszi figyelembe
+            az általunk kiküldött jelet a programunk.
         </para>
 
     </section>                     
@@ -179,7 +227,8 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         </para>
 
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A LaTeX egy texen alapuló szövegformázó rendszer, amely dokumentumok, szakdolgozatok, akár
+            tudományos cikkek írására is használnak. Matematikusok gyakran használják.
         </para>
     </section>                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -265,10 +314,11 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás videó: 
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link href="https://github.com/Salesz9902/prog1/blob/master/deklaracio.c">https://github.com/Salesz9902/prog1/blob/master/deklaracio.c</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Már a legkisebb programokban is találhatunk változó vagy függvénydeklarációt. Ezek kulcsfontosságúak számunkra, hiszen így tudunk tárolni adatokat egyszerűen amiket
+            programunk során felhasználunk. Illetve a függvényekkel saját függvényeket is írhatunk.
         </para>
     </section>                     
 
