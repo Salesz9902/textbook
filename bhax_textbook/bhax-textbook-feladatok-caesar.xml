@@ -8,12 +8,6 @@
     <section>
         <title><type>double **</type> háromszögmátrix</title>
         <para>
-           
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c">https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c</link>
         </para>
         <para>
@@ -52,9 +46,6 @@
             Írj egy EXOR titkosítót C-ben!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exorencrypt.c">https://github.com/salesz9902/prog1/blob/master/exorencrypt.c</link>          
         </para>
         <para>
@@ -68,22 +59,19 @@
             Írj egy EXOR titkosítót Java-ban!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ebben a feladatban ugyanazt írjuk meg, mint az előzőben, csak nem C-ben, hanem egy erősen objektum orientált nyelvben, a Java-ban.
         </para>            
+        <para>
+            A program ugyan úgy működik, mint C elődje, szintén a bekért szöveget titkosítja.
+        </para>
     </section>        
     <section>
         <title>C EXOR törő</title>
         <para>
             Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:       <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exor.c">https://github.com/salesz9902/prog1/blob/master/exor.c</link>         
@@ -105,16 +93,14 @@
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Itt egy neurális hálót készítünk R nyelvben. A neurális háló mesterséges oldala úgy néz ki, hogy megadjuk a programunknak, milyen bemenetre milyen kimenetet adjon, 
+            aztán ezt a programunk ennek alapján elkezdi leutánozni egy bizonyos szinten.
         </para>            
     </section>        
     <section>
         <title>Hiba-visszaterjesztéses perceptron</title>
         <para>
             C++
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/nlp.hpp">https://github.com/salesz9902/prog1/blob/master/nlp.hpp</link>

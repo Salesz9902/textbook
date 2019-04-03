@@ -1,0 +1,111 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+        <cover>
+            <para>
+                Programozási tankönyvek rövid olvasónaplói.
+            </para>
+        </cover>
+    </info>
+    <section>
+        <title>Juhász István - Magas szintű programozási nyelvek 1</title>
+        <para>
+            <citation>PICI</citation>
+        </para>
+        <para>
+            Alapfogalmak:
+        </para>
+        <para>
+            Gépi nyelv: A gépi nyelv, egy olyan nyelv, amely a számítógép számára közvetlenül értelmezhető.
+            Kettes vagy tizenhatos számrendszeren alapul (számokkal ábrázolandó). 
+        </para>
+        <para>
+            Magas szintű nyelv: A magas szintű programozási nyelvek már felhasználó közelibbek. Ezek nem értelmezhetőek 
+            közvetlenül a számítógép által. Itt már szükségünk van egy fordítóra, ami lefordítja gépi nyelvre, ahhoz, hogy 
+            futtatható legyen.
+        </para>
+        <para>
+            Gépi nyelvezetű avagy alacsony szintű programnyelv például az Assembly, amelyben sokkal nehezebben igazodunk el, 
+            hisz egyértelműen látszik, hogy a géphez áll közelebb. Viszont magas szintű programnyelv például a C, amelyben 
+            érzékelhetjük is, hogy sokkal jobban érthetőek a C-ben írt kódok, mint akár Assembly-ben. Hisz C-ben mondhatjuk, 
+            hogy angol kulcsszavakkal adunk ki "parancsokat" a számítógép számára, ami persze ugyanúgy lefordul majd gépi 
+            kódra, aztán futtathatóvá is válik.
+        </para>
+        <para>
+            Egy programot tudunk szintaktikailag, illetve szemantikailag elemezni. Szintaktikai elemzésnél konkrétan a 
+            programkódunk "helyesírására" figyelünk. Tehát, hogy nem-e írtunk el egy adott parancsot például, stb.. 
+            Szemantikai elemzésnél már arra figyelünk, hogy miután szintaktikailag helyes a programunk, helyesen fut-e le. 
+            Tehát itt azt nézzük, hogy tényleg azt csinálja-e a programunk, ami a célunk volt vele. Helyesen fut-e le.
+        </para>
+        <para>
+            A programnyelveket két fő csoportba soroljuk: vannak imperatív és dekleratív nyelvek. Az imperatív nyelvek 
+            általában az értékadó utasítások megfelelő sorrendben való kiadására koncentrálnak. Ez az a típus, amelyben 
+            feltehetően többen programoznak, bár nem feltétlenül, de ha valaki komolyabb programozásra vágyik, ezzel a 
+            típussal kezdi el a gyakorlást, majd folytatja a bonyolultabb programokkal. Imperatívak például az eljárásorientált 
+            nyelvek, vagy az objektumorientált nyelvek.
+        </para>
+        <para>
+            A dekleratív csoportba sorolható programkódoknál általában a programíró arra koncentrál, hogy mit szeretne 
+            kapni az adott program futása során. Ilyenek például a funkcionális nyelvek, illetve a logikai nyelvek is.
+        </para>
+        <para>
+            Fontos megjegyezni, hogy elméleti szinten nem fogunk megtanulni programozni. Ezalatt azt értem, hogy ahhoz, hogy 
+            valaki jó programozóvá váljon, rengeteg programkódot kell átvészelnie mind elméletben, de legfőképpen gyakorlatban.
+        </para>
+        <para>
+            Utasítások:
+        </para>
+        <para>
+            Sokféle utasítás létezik. Ilyenek például az értékadó, üres, ugró, elágaztató, ciklusszervező, hívó, I/O illetve 
+            számos egyéb utasítások.
+        </para>
+        <para>
+            Itt azért pár utasítás eléggé magától értendő. Mint például az értékadó utasításokkal egy vagy több változó 
+            értékkomponensét állítjuk be, vagy éppen módosítjuk.
+        </para>
+        <para>
+            Az elágaztató utasítások például az if feltétellel kapcsolatos megoldásokat fedi le, azaz valamilyen feltételes, 
+            kétirányú logikai utasítás. Ezekből vannak egyirányú, illetve többirányúak is. Ide tartozik a switch utasítás is.
+        </para>
+    </section>
+    
+    <section>
+        <title>Kernighan Ritchie - A C programozási nyelv</title>
+        <para>
+            <citation>KERNIGHANRITCHIE</citation>
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/zmfT9miB-jY">https://youtu.be/zmfT9miB-jY</link>
+        </para>
+        <para>
+            Ez a könyv egy tematikusan felépülő könyv, amely a C nyelv elsajátításához segíti hozzá olvasóját. Próbálja 
+            megismertetni a C nyelvet elég erős szinten, próbál bizonyos keretek között picit mélyebben belemenni a dolgokba.
+        </para>
+        <para>
+            A könyv alapismeretekkel indít. Hamar lényegre is tör, hiszen már egy "Hello World!" stílusú program megírásával 
+            szemléltet az olvasó felé. Erősen ragaszkodik a UNIX-on való fordításra, illetve futtatásra.
+        </para>
+        <para>
+            Bemutatja a szokásos alap programozási eszközöket. Mint például ciklusok (for, while, do-while), a változó deklarálásától 
+            megkezdve a tömbökön át a függvényekig. Kitér külön a változótípusokra, amik működését el is magyarázza, több példán keresztül bemutatja.
+        </para>
+        <para>
+            Már viszonylag hamar elkezdődnek folyamatos rövid példákkal való szemléltetések, illetve a programkódok kipróbálásra való 
+            késztetések. A fent leírtak mindegyike érthető módon be van mutatva, le van egyszerű programokba bonyolítva, amelyek 
+            értelemszerűen a lehető legjobb megérttetésre törekednek.
+        </para>
+    </section>
+    
+    <section>
+        <title>Programozás</title>
+        <para>
+            <citation>BMECPP</citation>
+        </para>
+        <para>
+            A könyvet még nem sikerült beszerezni, így erről nem tudtam elkezdeni megírni az olvasónaplót. 
+        </para>
+    </section>
+</chapter>
