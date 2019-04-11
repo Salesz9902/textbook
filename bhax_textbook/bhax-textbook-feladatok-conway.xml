@@ -18,8 +18,14 @@
             Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Nem hiába kapta a feladatunk ezt a nevet. Hiszen programunk a hangyák viselkedését szimulálja le. Figyeljük meg, ahogyan véletlenszerűen 
+            változik az apró pontoknak a helyzete, aztán egyre több lesz belőlük. Egyszer itt gyűlnek össze, egyszer ott. Tisztára olyan viselkedést mutatnak 
+            mint a hangyák egy élő szituációban.
         </para>            
+        <para>
+            Az elején elkezdenek egy adott pontból elindulni. Olyan, mintha egy ételmaradékon összegyűlnének, aztán sorban egymás után elkezdenék haza cipelni azokat. 
+            A hangyáknak ez egy nagyon jellegzetes tulajdonságuk. A programot sokáig hagyhatjuk futni, hiszen a végtelenségig szimulálja a dolgokat számunkra.
+        </para>
     </section>        
     <section>
         <title>Java életjáték</title>
@@ -49,8 +55,15 @@
             Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ismét egy eléggé árulkodó nevet kaptunk feladatunknak. Itt különböző pici "sejtautók" mozgásának szemtanúi lehetünk! Az apró mozgalmas sejtek 
+            egy-egy élő sejt viselkedését próbálják reprezentálni. Látható, ahogy úgymond legyártódnak a sejtek, aztán elindulnak egymás után egy irányba. 
+        </para>
+        <para>
+            Aztán ahogyan a képernyőnk széléhez érnek, egy újabb részen megjelennek, aztán addig-addig osztódnak, amíg rengeteg nem lesz belőlük.
         </para>            
+        <para>
+            Alapvetően a sejtek a valóságban is hasonlóan működnek. Kell, hogy legyen egy-egy társuk, különben elpusztulnak.
+        </para>
     </section>        
     <section>
         <title>BrainB Benchmark</title>
@@ -63,8 +76,22 @@
             Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Itt a Qt keretrendszer segítségével tudjuk megoldani a feladatot. Fontos, hogy amíg eljutunk addig, hogy a programunk megfelelő környezetben megfelelően 
+            lefordul és lefut, rengeteg helyet kell annak igénybe vennie. Tehát készüljünk fel rá, hogy legyen 20-30 GB szabad helyünk, hogy kényelmes legyen a program 
+            kezelése minden szempontból.
         </para>            
+        <para>
+            A Qt keretrendszer nagyon nagy eszközkészlettel rendelkezik, és rengeteg lehetőségünk van kihasználni ezeket. A nagy eszközkészlet a szükséges letöltött 
+            dolgok méretében is erősen megnyilvánul.
+        </para>
+        <para>
+            E program célja, hogy benchmarkot készítsen egy E-sportoló játékosról. Felmére annak tudását, amely segítségével már könnyen besorolható lesz egy adott 
+            szintre. A program futtatás után, és akár pár perc játék után részletes leírásokat kapunk kimenetként. Ennek segítségével akár már irányt kaphatunk E-sport 
+            karrierünk felépítésében, kérdésében.
+        </para>
+        <para>
+            
+        </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>                

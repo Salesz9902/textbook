@@ -90,6 +90,18 @@
         <para>
             Megoldás forrása:  
         </para>
+        <para>
+            Szintén egy összetett feladattal állunk szemben. Ahhoz, hogy megfelelően tudjuk fordítani/futtatni a programot, telepítenünk kell az 
+            <code>nvidia-cuda-toolkit</code> nevű csomagot.
+        </para>
+        <para>
+            A programunk konkrétan optimalizálni próbálja a "munkánkat", egy gyorsabb számolást eredményez a háttérben, ami nagyon sok esetben nagy segítségünkre 
+            lehet, hiszen ki ne akarná, hogy gyorsabban dolgozzon a gépe.
+        </para>
+        <para>
+            Az optimalizásálásról már korábban is volt szó a könyvben, mégpedig a legelső feladatunkban például, ahol OpenMP segítségével osztottuk fel processzormagokra 
+            a végrehajtandó "munkát".
+        </para>
     </section>                     
 
     <section>
@@ -129,6 +141,16 @@
     <section>
         <title>Mandelbrot nagyító és utazó Java nyelven</title>
         <para>
+            Hasonló szituációban vagyunk, mint az előző feladatnál. Annyi változik, hogy már egy jóval felhasználóközelibb, magasabb szintű programozási nyelven 
+            valósítjuk meg, a Javaban.
+        </para>
+        <para>
+            Itt is rengeteg keretrendszerünk van. A programban nagy a testreszabhatóság lehetősége. Mi magunk adhatjuk meg több paramétereit is a programunk elindulásakor 
+            felnyíló ablaknak stb. 
+        </para>
+        <para>
+            A konstruktorban beállíthatjuk a Mandelbrot halmaz paramétereit. Például az élességet. Ami még érdekes lehet számunkra, az nem más, mint a BufferedImage típus, 
+            amit a Java biztosít számunkra. Ez tulajdonképpen egy osztály, ami lehetőséget ad, hogy külső könyvtár használata nélkül is képesek legyünk egyszerűen képfájlokat létrehozni.
         </para>
     </section>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

@@ -126,7 +126,9 @@
             Megoldás forrása:  <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link> 
         </para>
         <para>
-            Ebben az esetben a bináris fa gyökere egy mutató kell, hogy legyen. 
+            Ebben az esetben a bináris fa gyökere egy mutató kell, hogy legyen. Ez semmit sem változtat a többi, vagy akár 
+            az eredeti LZWBinFa-hoz képest. Ugyanaz a végkimenetele, minden ugyanúgy működik, csak szimplán másképp van 
+            megoldva.
         </para>
     </section>                     
 
