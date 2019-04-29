@@ -11,10 +11,7 @@
             Állapotátmenet gráfjával megadva írd meg ezt a gépet!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:       <link href="https://github.com/salesz9902/prog1/blob/master/binarunary.c">https://github.com/salesz9902/prog1/blob/master/binarunary.c</link>    
+            Megoldás forrása:   <link href="https://github.com/salesz9902/prog1/blob/master/binarunary.c">https://github.com/salesz9902/prog1/blob/master/binarunary.c</link>    
         </para>
         <para>
             A Turing-gép Alan Turing angol matematikushoz fűződik, hiszen ő dolgozta ki ennek fogalmát. Ez mindenféle folyamat precízebb megfogalmazására
@@ -30,6 +27,17 @@
         <para>
             A programunk annyit csinál, hogy bekér a felhasználótól egy decimális számot, majd azt kiírja unárisban, 5-ösével elválasztva.
         </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../images/binarunary.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>  
     </section>        
         
     <section>
@@ -310,9 +318,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         </itemizedlist>       
 
 
-        <para>
-            Megoldás videó: 
-        </para>
         <para>
             Megoldás forrása:  <link href="https://github.com/Salesz9902/prog1/blob/master/deklaracio.c">https://github.com/Salesz9902/prog1/blob/master/deklaracio.c</link>
         </para>

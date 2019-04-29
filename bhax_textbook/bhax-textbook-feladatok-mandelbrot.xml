@@ -8,12 +8,6 @@
     <section>
         <title>A Mandelbrot halmaz</title>
         <para>
-                
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp</link>            
         </para>
         <para>
@@ -39,12 +33,6 @@
         
     <section>
         <title>A Mandelbrot halmaz a <filename>std::complex</filename> osztállyal</title>
-        <para>
-                
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
         <para>
             Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp</link>       
         </para>
@@ -85,9 +73,6 @@
         <para>
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
             Megoldás forrása:  
         </para>
         <para>
@@ -109,14 +94,7 @@
         <para>
             Építs GUI-t a Mandelbrot algoritmusra, lehessen egérrel nagyítani egy területet, illetve egy pontot
             egérrel kiválasztva vizualizálja onnan a komplex iteréció bejárta z<subscript>n</subscript> komplex számokat!
-        </para>
-            
-        <para>
             Megoldás forrása:  
-        </para>
-
-        <para>
-            Megoldás videó: 
         </para>
         <para>
             Megoldás forrása:  <link xlink:href="https://github.com/salesz9902/prog1/tree/master/mandelzoom">https://github.com/salesz9902/prog1/tree/master/mandelzoom</link>

@@ -15,7 +15,7 @@
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/tree/master/hangyaszimulacio">https://github.com/salesz9902/prog1/tree/master/hangyaszimulacio</link>               
+            Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
             Nem hiába kapta a feladatunk ezt a nevet. Hiszen programunk a hangyák viselkedését szimulálja le. Figyeljük meg, ahogyan véletlenszerűen 
@@ -46,7 +46,7 @@
             Most Qt C++-ban!
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/tree/master/sejtauto">https://github.com/salesz9902/prog1/tree/master/sejtauto</link>               
+            Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
             Ismét egy eléggé árulkodó nevet kaptunk feladatunknak. Itt különböző pici "sejtautók" mozgásának szemtanúi lehetünk! Az apró mozgalmas sejtek 
@@ -62,7 +62,7 @@
     <section>
         <title>BrainB Benchmark</title>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/tree/master/brainB">https://github.com/salesz9902/prog1/tree/master/brainB</link>               
+            Megoldás forrása: <link xlink:href=""></link>               
         </para>
         <para>
             Itt a Qt keretrendszer segítségével tudjuk megoldani a feladatot. Fontos, hogy amíg eljutunk addig, hogy a programunk megfelelő környezetben megfelelően 
@@ -77,9 +77,6 @@
             E program célja, hogy benchmarkot készítsen egy E-sportoló játékosról. Felmére annak tudását, amely segítségével már könnyen besorolható lesz egy adott 
             szintre. A program futtatás után, és akár pár perc játék után részletes leírásokat kapunk kimenetként. Ennek segítségével akár már irányt kaphatunk E-sport 
             karrierünk felépítésében, kérdésében.
-        </para>
-        <para>
-            
         </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

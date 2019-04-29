@@ -12,9 +12,6 @@
             100 százalékban minden magot!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
 	<programlisting language="c"><![CDATA[Program procheating
@@ -38,16 +35,24 @@
         </para>
         <para>
 	Azt, hogy a program a processzor összes magját kihasználja, OpenMP segítségével oldottam meg. Ez nagyobb programoknál alapszabály, hogy gondoskodjunk a processzor teljes kihasználtságáról.
-        </para>            
+        </para>     
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../images/procheating.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>       
     </section>        
         
     <section>
         <title>Lefagyott, nem fagyott, akkor most mi van?</title>
         <para>
             Mutasd meg, hogy nem lehet olyan programot írni, amely bármely más programról eldönti, hogy le fog-e fagyni vagy sem!
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:  tegyük fel, hogy akkora haxorok vagyunk, hogy meg tudjuk írni a <function>Lefagy</function>
@@ -209,9 +214,6 @@ false]]></screen>
             <filename>/prog1/blob/master/bouncingball.c</filename></link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-        <para>
             Ahhoz, hogy a programot megfelelően tudjuk fordítani, használnunk kell a <function>-lncurses</function> kapcsolót a következő módon:
             <programlisting>
             gcc "programneve" -o "futtathatoneve" -lncurses
@@ -276,14 +278,22 @@ int main(void)
             Használd ugyanazt a while ciklus fejet, amit Linus Torvalds a BogoMIPS rutinjában! 
         </para>
         <para>
-            Megoldás videó: <link xlink:href=""></link>
-        </para>
-        <para>
             Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bogomips.c">https://github.com/Salesz9902/prog1/blob/master/bogomips.c</link>
         </para>
         <para>
             A BogoMIPS a processzor egy magjának a gyorsaságát méri meg 1 másodperc alatt. Sokan így akarják összehasonlítani számítógépük erősségét, ezt nem erre találták ki.
         </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../images/bogomips.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>  
     </section>                     
 
     <section>
@@ -291,9 +301,6 @@ int main(void)
         <para>
             Írj olyan C programot, amely egy 4 honlapból álló hálózatra kiszámolja a négy lap Page-Rank 
             értékét!
-        </para>
-        <para>
-            Megoldás videó: <link xlink:href=""></link>
         </para>
         <para>
             Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/pagerank.c">https://github.com/Salesz9902/prog1/blob/master/pagerank.c</link>
@@ -305,15 +312,13 @@ int main(void)
         <para>
             Ez alapján egyértelműen látjuk, hogy melyik weboldal mennyire fontos, és segítségével hasznos listát tudunk felállítani az oldalak fontosságáról.
         </para>
+        
     </section>
 
     <section xml:id="Brun">
         <title>100 éves a Brun tétel</title>
         <para>
             Írj R szimulációt a Brun tétel demonstrálására!
-        </para>
-        <para>
-            Megoldás videó: 
         </para>
         <para>
             Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/brun.r">https://github.com/salesz9902/prog1/blob/master/brun.r</link>
@@ -324,15 +329,19 @@ int main(void)
         <para>
             A példánkban egy olyan programot írtunk, amely próbálja megközelíteni a Brun konstans értékét. Tehát kiszámolja az ikerprímeker, összegzi a reciprokaikat és részeredményt mutat.
         </para>
+        <para>
+            Tisztázzuk az ikerprím fogalmát:
+        </para>
+        <para>
+            Ikerprímnek két olyan prímszám együttesét nevezzük, amelyek 2-vel térnek el egymástól: például 5 és 7. Mivel a prímszámok (a 2-t kivéve) csak páratlan számok lehetnek, két prímszám 
+            között nem lehet kisebb a különbség 2-nél (a (2, 3) pár kivételével). Más megfogalmazás szerint: az ikerprímek két olyan prímszám együttese, amelyek között a prímhézag 2. 
+        </para>
     </section>
     
     <section xml:id="bhax-textbook-feladatok-turing.MontyHall">
         <title>A Monty Hall probléma</title>
         <para>
             Írj R szimulációt a Monty Hall problémára!
-        </para>
-        <para>
-            Megoldás videó: 
         </para>
         <para>
             Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/montyhall.r">https://github.com/salesz9902/prog1/blob/master/montyhall.r</link>
