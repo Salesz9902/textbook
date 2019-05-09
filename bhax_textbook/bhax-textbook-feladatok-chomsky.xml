@@ -30,7 +30,7 @@
         <mediaobject>
             
             <imageobject>
-                <imagedata fileref="../images/binarunary.png"/>
+                <imagedata fileref="../pictures/binarunary.png"/>
             </imageobject>
             
             <caption>
@@ -375,6 +375,48 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <para>
             Már a legkisebb programokban is találhatunk változó vagy függvénydeklarációt. Ezek kulcsfontosságúak számunkra, hiszen így tudunk tárolni adatokat egyszerűen amiket
             programunk során felhasználunk. Illetve a függvényekkel saját függvényeket is írhatunk.
+        </para>
+        <para>
+            Fontos megemlíteni, hogy egy változó deklarálásakor, akár univerzális, akár konkrét típust, de meg kell adnunk, különben hibaüzenetet fogunk kapni fordításkor.
+            Kezdőknél gyakori, hogy a deklarációt összekeverik az értékadással, avagy deklarációnak nevezik az értékadást.
+        </para>
+        <para>
+            A fenti pontokban több féle deklarációkat láthatunk. Az előbb említett értékadás NEM (!) deklaráció. A következőképpen néznek ki:
+            <programlisting>
+                <![CDATA[
+                int a; //deklaráció
+                a = 5; //értékadás
+                int b = 10; //deklaráció és értékadás egyben
+                ]]>
+            </programlisting>
+        </para>
+        <para>
+            Ha egy változót deklarálunk, és nem adunk neki értéket, akkor nagy eséllyel valamilyen "memóriaszemetet" kapunk, ugyanis ilyenkor a programunk az adott változóinknak
+            véletlenszerűen foglal le helyet a memóriában, így ez keletkezik belőle. Ebből az következik, hogy olyan változóknak, amit még az értékének megváltoztatása előtt ki szeretnénk 
+            iratni, akkor ne feltétlenül nullára számítsunk, hiszen közel sem biztos, hogy az lesz a kezdőértéke. Ezt az alábbi példában láthatjuk:
+            <programlisting language="c"><![CDATA[
+                #include <stdio.h>
+
+                int main() 
+                {
+                    int a, b, c, d, e, f, g;
+                    printf("%d, %d, %d, %d, %d, %d, %d\n", a,b,c,d,e,f,g);
+                }
+                ]]>
+            </programlisting>
+        </para>
+        <para>
+            A program futtatása, kimenete:
+            <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/memtrash.png"/>
+            </imageobject>
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>
         </para>
     </section>                     
 

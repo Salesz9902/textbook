@@ -229,9 +229,9 @@ false]]></screen>
         </para>
         <para>
             Az if nélküli módszer 
-            <programlisting language="c"><![CDATA[Program procheating
+            <programlisting language="c"><![CDATA[Program bouncingball
             {
-                    #include <stdio.h>
+            #include <stdio.h>
             #include <stdlib.h>
             #include <curses.h>
             #include <unistd.h>

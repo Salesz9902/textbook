@@ -17,7 +17,7 @@
             Tanulságok, tapasztalatok, magyarázat...
         </para>
     </section>        
-
+<!--
     <section>
         <title>Szoftmax R MNIST</title>
         <para>
@@ -30,7 +30,7 @@
             Tanulságok, tapasztalatok, magyarázat...
         </para>
     </section>        
-
+-->
     <section>
         <title>Mély MNIST</title>
         <para>
@@ -43,7 +43,7 @@
             Tanulságok, tapasztalatok, magyarázat...
         </para>
     </section>        
-
+<!--
     <section>
         <title>Deep dream</title>
         <para>
@@ -56,10 +56,11 @@
             Tanulságok, tapasztalatok, magyarázat...
         </para>
     </section>        
-                  
+-->        
     <section>
-        <title>Robotpszichológia</title>
+        <title>Minecraft-MALMÖ</title>
         <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/bAPSu3Rndi8">https://youtu.be/bAPSu3Rndi8</link>
         </para>
         <para>
             Megoldás forrása:                

@@ -12,18 +12,16 @@
     <authorgroup xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
     <author>
         <personname>
-            <honorific>Dr.</honorific>
-            <surname>Bátfai</surname>
-            <firstname>Norbert</firstname>        
+            <surname>Schachinger</surname>
+            <firstname>Zsolt</firstname>        
         </personname>    
         <affiliation>
-            <shortaffil>E. adjunktus, DE.</shortaffil>
-            <jobtitle>Egyetemi adjunktus</jobtitle>
+            <shortaffil>Hallgató</shortaffil>
+            <jobtitle>Hallgató</jobtitle>
             <orgname>Debreceni Egyetem</orgname>
-            <orgdiv>Információtechnológiai Tanszék</orgdiv>
+            <orgdiv>Programtervező informatikus</orgdiv>
             <address>
-                <email>batfai.norbert@inf.unideb.hu</email>
-                <email>nbatfai@gmail.com</email>
+                <email>salesz19990203@outlook.com</email>
             </address>
         </affiliation>
         <address>
@@ -31,7 +29,7 @@
             <city>Debrecen</city>
             <postcode>4028</postcode>
             <country>Magyarország</country>
-            <email>batfai.norbert@inf.unideb.hu</email>
+            <email>salesz19990203@outlook.com</email>
             <otheraddr>
                 <link xlink:href="https://arato.inf.unideb.hu/batfai.norbert/">https://arato.inf.unideb.hu/batfai.norbert/</link>
             </otheraddr>
@@ -309,14 +307,41 @@ Build bhax-textbook-fdl.pdf
             100 százalékban minden magot!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
+	<programlisting language="c"><![CDATA[Program procheating
+{
+	#include <stdio.h>
+	#include <omp.h>
+
+	int main()
+	{
+	#pragma omp parallel for
+	for (int i=0; i<10;i++)
+	{
+		i--;
+	}
+
+	}
+}]]></programlisting>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Az OpenMP (Open Multi-Processing) egy api, ami támogatja a multi többprocesszoros programozást. Ilyen esetben, ezt sokkal egyszerűbb használni, mintsem elkezdenénk a több-szálkezelő
+            (multithread) módszerrel dolgozni..
+        </para>
+        <para>
+	Azt, hogy a program a processzor összes magját kihasználja, OpenMP segítségével oldottam meg. Ez nagyobb programoknál alapszabály, hogy gondoskodjunk a processzor teljes kihasználtságáról.
+        </para>     
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/procheating.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>       
     </section>        
         
     <section>
@@ -325,11 +350,8 @@ Build bhax-textbook-fdl.pdf
             Mutasd meg, hogy nem lehet olyan programot írni, amely bármely más programról eldönti, hogy le fog-e fagyni vagy sem!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:  tegyük fel, hogy akkora haxorok vagyunk, hogy meg tudjuk írni a <function>Lefagy</function>
-            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne vlgtelen ciklus:              
+            függvényt, amely tetszőleges programról el tudja dönteni, hogy van-e benne végtelen ciklus:              
         </para>
         <programlisting language="c"><![CDATA[Program T100
 {
@@ -401,7 +423,9 @@ false]]></screen>
             függvényt, azaz a T100 program nem is létezik.                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ezt a programot matematikailag lehetetlen megírni számunkra. Ugyanis ilyen program, mint a feladat közben is olvashatjuk nem hozható létre.
+            Ha elkezdjük boncolgatni a problémát, újabb problémába ütközünk, hiszen hamar ellentmondást kapunk a dolgok vizsgálata kapcsán... Elvégre többször 
+            is bizonyítva volt már sok nagyobb ember által is, hogy a program nem megírható.
         </para>
     </section>        
                 
@@ -417,26 +441,130 @@ false]]></screen>
         <para>
             Megoldás forrása:  
         </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
+        <programlisting language="c"><![CDATA[Program procheating
+{
+	#include <stdio.h>
+
+        int main()
+        {
+        //change the values with an extra variable
+        int a, b, c;
+        a=2;
+        b=5;
+        c=0;
+
+        //before the trade
+        printf("csere elott:\na=%d, b=%d\n",a,b);
+        c=a;
+        a=b;
+        b=c;
+        //after the trade
+        printf("csere utan:\na=%d, b=%d\n",a,b);
+
+        //no extra variable used..
+        //change values with exor
+        a=3;
+        b=8;
+
+        //values before the trade
+        printf("\ncsere exorral:\n");
+        printf("csere elott:\na=%d, b=%d\n",a,b);
+
+        a=a+b;
+        b=a-b;
+        a=a-b;
+
+        printf("csere utan:\na=%d, b=%d\n",a,b);
+        }
+
+}]]></programlisting>
+            <para>
+            Mint fent látható, először segédváltozóval oldom meg a cserét, aztán segédváltozó használata nélkül, művelettel(összeadás, kivonás).
+            </para>
+            <para>
+                Jelen esetben a műveletekkel való csere előtt, az <function>a</function> értéke 3, a <function>b</function> értéke 8. Hogyan is zajlik pontosan itt a csere?
+            </para>
+            <para>
+            Így:
+            </para>
+            <programlisting>
+            a = 3
+            b = 8
+            a = a + b -&gt; a = 11 (3+8)
+            b = a - b -&gt; b = 3 (11-8)
+            a = a - b -&gt; a = 8 (11-3)
+            </programlisting>
     </section>                     
 
     <section>
         <title>Labdapattogás</title>
         <para>
             Először if-ekkel, majd bármiféle logikai utasítás vagy kifejezés
-            nasználata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
+            használata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
             pattogtatás alatt, alább láthatod a videókon.)
         </para>
         <para>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/labdapattogas">https://bhaxor.blog.hu/2018/08/28/labdapattogas</link>
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása:  <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bouncingball.c">https://github.com/Salesz9902/prog1/blob/master/bouncingball.c
+            <filename>/prog1/blob/master/bouncingball.c</filename></link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ahhoz, hogy a programot megfelelően tudjuk fordítani, használnunk kell a <function>-lncurses</function> kapcsolót a következő módon:
+            <programlisting>
+            gcc "programneve" -o "futtathatoneve" -lncurses
+            </programlisting>
+        </para>
+        <para>
+            Ahhoz, pedig, hogy tudjuk használni a -lncurses kapcsolót, telepítenünk kell a libncurses5-dev-et:
+            <programlisting>
+                sudo apt-get install libncurses5-dev
+            </programlisting>
+        </para>
+        <para>
+            Az if nélküli módszer 
+            <programlisting language="c"><![CDATA[Program procheating
+            {
+                    #include <stdio.h>
+            #include <stdlib.h>
+            #include <curses.h>
+            #include <unistd.h>
+
+            int main(void)
+            {
+                int xj = 0, xk = 0, yj = 0, yk = 0;
+                int mx = 80 * 2, my = 24 * 2;
+
+                WINDOW *ablak;
+                ablak = initscr();
+                noecho ();
+                cbreak ();
+                nodelay (ablak,true);
+
+                for (;;)
+                {
+                    xj = (xj - 1) % mx;
+                    xk = (xk + 1) % mx;
+
+                    yj = (yj - 1) % my;
+                    yk = (yk + 1) % my;
+
+                    clear();
+
+                    mvprintw(0, 0,
+                             "---------------------------------------------------------------");
+                             mvprintw(24, 0,
+                             "---------------------------------------------------------------");
+                             mvprintw(abs ((yj + (my - yk)) / 2),
+                                        abs ((xj + (mx - xk)) / 2), "X");
+                    refresh();
+                    usleep(150000);
+                }
+                return 0;
+            }
+
+            }]]></programlisting>
         </para>
     </section>                     
 
@@ -447,14 +575,22 @@ false]]></screen>
             Használd ugyanazt a while ciklus fejet, amit Linus Torvalds a BogoMIPS rutinjában! 
         </para>
         <para>
-            Megoldás videó: <link xlink:href=""/>
+            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bogomips.c">https://github.com/Salesz9902/prog1/blob/master/bogomips.c</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""/>
+            A BogoMIPS a processzor egy magjának a gyorsaságát méri meg 1 másodperc alatt. Sokan így akarják összehasonlítani számítógépük erősségét, ezt nem erre találták ki.
         </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat... 
-        </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/bogomips.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>  
     </section>                     
 
     <section>
@@ -464,14 +600,16 @@ false]]></screen>
             értékét!
         </para>
         <para>
-            Megoldás videó: <link xlink:href=""/>
+            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/pagerank.c">https://github.com/Salesz9902/prog1/blob/master/pagerank.c</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href=""/>
+            A PageRank egy olyan algoritmus, amely linkekhez számokat rendel, majd azokat sorrendbe teszi a hálózatban betöltött szerepük alapján. A Google keresőmotorjának ez az egyik
+            legfontosabb eleme. A PageRank szó egyben a a Google bejegyzett védjegye.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ez alapján egyértelműen látjuk, hogy melyik weboldal mennyire fontos, és segítségével hasznos listát tudunk felállítani az oldalak fontosságáról.
         </para>
+        
     </section>
 
     <section xml:id="Brun">
@@ -480,10 +618,20 @@ false]]></screen>
             Írj R szimulációt a Brun tétel demonstrálására!
         </para>
         <para>
-            Megoldás videó: <link xlink:href="https://youtu.be/xbYhp9G6VqQ">https://youtu.be/xbYhp9G6VqQ</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/brun.r">https://github.com/salesz9902/prog1/blob/master/brun.r</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/Primek_R</link>
+            A Brun tétel az ikerprímszámok reciprokaiból képez sorösszegeket, Brun konstans néven ismert véges értékhez konvergál. 
+        </para>
+        <para>
+            A példánkban egy olyan programot írtunk, amely próbálja megközelíteni a Brun konstans értékét. Tehát kiszámolja az ikerprímeket, összegzi a reciprokaikat és részeredményt mutat.
+        </para>
+        <para>
+            Tisztázzuk az ikerprím fogalmát:
+        </para>
+        <para>
+            Ikerprímnek két olyan prímszám együttesét nevezzük, amelyek 2-vel térnek el egymástól: például 5 és 7. Mivel a prímszámok (a 2-t kivéve) csak páratlan számok lehetnek, két prímszám 
+            között nem lehet kisebb a különbség 2-nél (a (2, 3) pár kivételével). Más megfogalmazás szerint: az ikerprímek két olyan prímszám együttese, amelyek között a prímhézag 2. 
         </para>
     </section>
     
@@ -493,14 +641,35 @@ false]]></screen>
             Írj R szimulációt a Monty Hall problémára!
         </para>
         <para>
-            Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2019/01/03/erdos_pal_mit_keresett_a_nagykonyvben_a_monty_hall-paradoxon_kapcsan">https://bhaxor.blog.hu/2019/01/03/erdos_pal_mit_keresett_a_nagykonyvben_a_monty_hall-paradoxon_kapcsan</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/montyhall.r">https://github.com/salesz9902/prog1/blob/master/montyhall.r</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/MontyHall_R</link>
+            Kép forrása: <link xlink:href="https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/">https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A Monty Hall egy valószínűségi paradoxon. Az Egyesült Államokban, a Let's Make a Deal televíziós vetélkedő egyik feladatán alapul. Nevét a műsorvezetőről, Monty Hall-ról kapta.
         </para>
+        <para>
+            A probléma alap kiindulása az, hogy van 3 csukott ajtónk, amelyek közül 2 mögött van valami számunkra értéktelen dolog, viszont az egyik mögött valami rendkívül értékes lapul.
+            Azt kapjuk meg, amelyik az általunk választott ajtó mögött van. Tehát létezik egy egyszerű valószínűségszámítási eszköz, amely megmutatja, hogy melyik ajtót érdemes nekünk
+            választani az adott esetben.
+        </para>
+        <para>
+            Először tegyük fel, hogy van 1-es 2-es és 3-as ajtónk. A játékosunk először a 3-as ajtót választja. Itt 1/3 eséllyel lesz értékes tárgy. Majd kinyílik a 2-es ajtó. Ez egy 
+            értéktelen tárgy lett, ezért ott 0 eséllyel lesz értékes, viszont a mellette lévőben 2/3 az esély.
+        </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/montyhall.jpg"/>
+            </imageobject>
+            
+            <caption>
+                <para>Az egyik ajtó mögött egy autó, másik kettő mögött kecske található. Az autót keressük. Képen egyértelműen láthatjuk mennyi eséllyel találjuk meg az autót az 
+                ajtókban, így, hogy már 1 ajtót kinyitottunk, amiben kecske van.</para>
+            </caption>
+            
+        </mediaobject> 
     </section>
 
 </chapter>     
@@ -518,14 +687,33 @@ false]]></screen>
             Állapotátmenet gráfjával megadva írd meg ezt a gépet!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:   <link href="https://github.com/salesz9902/prog1/blob/master/binarunary.c">https://github.com/salesz9902/prog1/blob/master/binarunary.c</link>    
         </para>
         <para>
-            Megoldás forrása:                
+            A Turing-gép Alan Turing angol matematikushoz fűződik, hiszen ő dolgozta ki ennek fogalmát. Ez mindenféle folyamat precízebb megfogalmazására
+            lett kitalálva. Például eljárások, algoritmusok pontosabb leírására.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Írnom kell az unáris számrendszerről is. Ez egy nagyon egyszerű számrendszer, amiben vonalakkal ábrázoljuk a számokat.
+            Vegyük példának az 5-öt, ezt öt vonallal ábrázoljuk, a következőképpen:
+        </para> 
+            <para>
+                <code>||||| = 5</code>
+            </para>
+        <para>
+            A programunk annyit csinál, hogy bekér a felhasználótól egy decimális számot, majd azt kiírja unárisban, 5-ösével elválasztva.
         </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/binarunary.png"/>
+            </imageobject>
+            
+            <caption>
+                <para>Ubuntu linux screenshot</para>
+            </caption>
+            
+        </mediaobject>  
     </section>        
         
     <section>
@@ -534,14 +722,66 @@ false]]></screen>
             Mutass be legalább két környezetfüggő generatív grammatikát, amely ezt a nyelvet generálja!
         </para>
         <para>
-            Megoldás videó:
+            Legyenek <emphasis>S, X, Y</emphasis> változók.
+            Legyen <emphasis>a, b, c</emphasis> konstansok.
         </para>
         <para>
-            Megoldás forrása:                
+            <emphasis>S -&gt; abc, S-&gt;aXbc, Xb -&gt; bX, Xc -&gt; Ybcc, bY -&gt; Yb, Ay &gt; aax, Ay -&gt; aa</emphasis>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Noam Chomsky szintén egy nyelvész volt, akinek a fenti nyelv grammatikáját is köszönhetjük. Érdekes módon rengeteg kiemelkedő foglalkozása mellett informatikus is volt.
         </para>
+        <programlisting>
+                <![CDATA[S, X, Y: „változók” (a nemterminálisok)
+        a, b, c: „konstansok” (a terminálisok)
+        S → abc, S → aXbc, Xb → bX, Xc → Ybcc, bY → Yb, aY -> aaX, aY → aa (a helyettesítési szabályok)
+        S (a mondatszimbólum)
+
+            S (S → aXbc)
+            aXbc (Xb → bX)
+            abXc (Xc → Ybcc)
+            abYbcc (bY → Yb)
+            aabbcc
+
+            S (S → aXbc)
+            aXbc (Xb → bX)
+            abXc (Xc → Ybcc)
+            abYbcc (bY → Yb)
+            aYbbcc (aY -> aaX)
+            aaXbbcc (Xb → bX)
+            aabXbcc (Xb → bX)
+            aabbXcc (Xc → Ybcc)
+            aabbYbccc (bY → Yb)
+            aabYbbccc (bY → Yb)
+            aaYbbbccc (aY → aa)
+            aaabbbccc]]> 
+        </programlisting>
+        <programlisting>
+            <![CDATA[A, B, C: „változók” (a nemterminálisok)
+            a, b, c: „konstansok” (a terminálisok)
+            A → aAB, A → aC, CB → bCc, cB → Bc, C → bc (a képzési szabályok) 
+            S (A kezdőszimbólum)
+
+                A (A → aAB)
+                aAB ( A → aC)
+                aaCB (CB → bCc)
+                aabCc (C → bc)
+                aabbcc
+
+                A (A → aAB)
+                aAB ( A → aAB)
+                aaABB ( A → aAB)
+                aaaABBB ( A → aC)
+                aaaaCBBB (CB → bCc)
+                aaaabCcBB (cB → Bc)
+                aaaabCBcB (cB → Bc)
+                aaaabCBBc (CB → bCc)
+                aaaabbCcBc (cB → Bc)
+                aaaabbCBcc (CB → bCc)
+                aaaabbbCccc (C → bc)
+                aaaabbbbcccc]]> 
+        </programlisting>
+
     </section>        
                 
     <section>
@@ -552,13 +792,30 @@ false]]></screen>
             Majd mutass be olyan kódcsipeteket, amelyek adott szabvánnyal nem fordulnak (például C89), mással (például C99) igen.
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása:
+            <programlisting language="c"><![CDATA[Program hivatkozasinyelv
+               {
+                #include <complex.h>
+                #include <stdbool.h>
+
+                int main()
+                {
+                    long long int asd;
+                    complex stnum;
+                }
+           }]]></programlisting>  
         </para>
         <para>
-            Megoldás forrása:  
+            A C nyelvnek is vannak régebbi, illetve újabb változatai. Ilyen például a C89, illetve a C99. Összehasonlítva a C89-hez képest rengeteg változás történt a C99-ben.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Például új header fájlok jöttek be a C99-nél, ilyen a <function>complex.h</function>, <function>stdbool.h</function> vagy a <function>tgmath.h</function>
+        </para>
+        <para>
+            Jelentős újítás volt még például az új típusok: long long int, vagy a complex típus.
+        </para>
+        <para>
+            A fenti kód például C89-ben nem futna le, mivel még nem ismerné a header fájlokat, illetve a long long int típust...
         </para>
     </section>                     
 
@@ -570,13 +827,30 @@ false]]></screen>
             a feladat lényege, hogy lexert használjunk, azaz óriások vállán álljunk és ne kispályázzunk!
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
             Megoldás forrása:  
+            <programlisting language="c"><![CDATA[Program lexikalis
+                %{
+                #include <stdio.h>
+                int realnumbers = 0;
+                %}
+                digit	[0-9]
+                %%
+                {digit}*(\.{digit}+)?	{++realnumbers; 
+                    printf("[realnum=%s %f]", yytext, atof(yytext));}
+                %%
+                int
+                main ()
+                {
+                 yylex ();
+                 printf("The number of real numbers is %d\n", realnumbers);
+                 return 0;
+                }
+           }]]></programlisting>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A programnak megadjuk/definiáljuk a számokat, ezt a <code>[0-9]</code> sorban láthatjuk.
+            Itt azt adjuk meg, hogy bármely szám nullától kilencig, hányszor fordulhat elő.
+            Az ez utáni sorban a <code>.|\n {}</code> után következő utasításnál többit figyelmen kívül hagyjuk.
         </para>
     </section>                     
 
@@ -586,13 +860,20 @@ false]]></screen>
             Lexelj össze egy l33t ciphert!
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása: <link href="https://github.com/Salesz9902/prog1/blob/master/l33t.c">https://github.com/Salesz9902/prog1/blob/master/l33t.c</link> 
         </para>
         <para>
-            Megoldás forrása:  
+            A leet nyelv egy internetes nyelv. Bizonyos betű karaktereket számokkal helyettesítünk, amik erősen hasonlítanak a betűkhöz.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            <programlisting>
+            Például:
+            3 = E
+            4 = A
+            1 = l
+            7 = T
+            </programlisting>
+            A fentiek ismeretében rájöhetünk, hogy a leet szó =&gt; 1337 leet nyelven írva. De akár írhatjuk így is: l33t 
         </para>
     </section>                     
 
@@ -650,16 +931,11 @@ false]]></screen>
                 <programlisting><![CDATA[printf("%d %d", f(&a), a);]]></programlisting>            
             </listitem>
         </orderedlist>
-        <para>
-            Megoldás forrása:  
-        </para>
 
         <para>
-            Megoldás videó: 
-        </para>
-
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ebben a programban egy jelkezelővel "játszadozhatunk". Ha a program futása során megnyomjuk a Ctrl+C billentyűkombinációt,
+            aminek meg kellene szakítani a folyamatot, először nem fogja. Aztán majd mégegyszeri lenyomás után már másképp veszi figyelembe
+            az általunk kiküldött jelet a programunk.
         </para>
 
     </section>                     
@@ -686,7 +962,8 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         </para>
 
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            A LaTeX egy texen alapuló szövegformázó rendszer, amely dokumentumok, szakdolgozatok, akár
+            tudományos cikkek írására is használnak. Matematikusok gyakran használják.
         </para>
     </section>                                                                                                                                                                            
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -769,13 +1046,11 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
 
 
         <para>
-            Megoldás videó: 
+            Megoldás forrása:  <link href="https://github.com/Salesz9902/prog1/blob/master/deklaracio.c">https://github.com/Salesz9902/prog1/blob/master/deklaracio.c</link>
         </para>
         <para>
-            Megoldás forrása:  
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Már a legkisebb programokban is találhatunk változó vagy függvénydeklarációt. Ezek kulcsfontosságúak számunkra, hiszen így tudunk tárolni adatokat egyszerűen amiket
+            programunk során felhasználunk. Illetve a függvényekkel saját függvényeket is írhatunk.
         </para>
     </section>                     
 
@@ -790,19 +1065,39 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         </keywordset>
     </info>
     <section>
-        <title><type>int ***</type> háromszögmátrix</title>
+        <title><type>double **</type> háromszögmátrix</title>
         <para>
-           
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c">https://github.com/salesz9902/prog1/blob/master/double_trimatrix.c</link>
         </para>
         <para>
-            Megoldás videó:
+            Elsősorban megadjuk a mátrix sorainak számát. <function>int nr = 5</function>
+            Ezután deklarálunk egy valós értékre mutató mutatót.
         </para>
         <para>
-            Megoldás forrása:                
+            Érdemes megfigyelnünk a <function>malloc</function> függvényt. 
+            5-ször 8 bájtot foglal le, és egy mutatót ad vissza. Ha 0 a méret, akkor a függvény NULL-t vagy egy egyéni mutatót ad vissza.
+            Az egyik <function>for</function> ciklusban <function>nr</function> alkalommal (azaz 5) a <function>malloc</function> segítségével
+            tm[i]-nek lefoglalja a helyet. Az elsőnél 8 bájtot, aztán 16-ot, aztán 32-t és így tovább az 5.-ig.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            Futtatásnál a következő kimenetet láthatjuk:
+            <programlisting>
+                ./double_trimatrix 
+                0x7ffce6bf4d40
+                0x55eba3f9a670
+                0x55eba3f9a6a0
+                0.000000, 
+                1.000000, 2.000000, 
+                3.000000, 4.000000, 5.000000, 
+                6.000000, 7.000000, 8.000000, 9.000000, 
+                10.000000, 11.000000, 12.000000, 13.000000, 14.000000, 
+                0.000000, 
+                1.000000, 2.000000, 
+                3.000000, 4.000000, 5.000000, 
+                42.000000, 43.000000, 44.000000, 45.000000, 
+                10.000000, 11.000000, 12.000000, 13.000000, 14.000000
+            </programlisting>
+        </para>
     </section>        
     <section>
         <title>C EXOR titkosító</title>
@@ -810,13 +1105,11 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Írj egy EXOR titkosítót C-ben!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exorencrypt.c">https://github.com/salesz9902/prog1/blob/master/exorencrypt.c</link>          
         </para>
         <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Egy olyan program, amely általunk megadott kulcs, illetve karakterhossz által generál nekünk egy titkos szöveget, amit az előbb említett adatok felhasználásával tudunk feltörni.
+            Sok esetben hasznunkra lehet.
         </para>            
     </section>        
     <section>
@@ -825,14 +1118,14 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Írj egy EXOR titkosítót Java-ban!
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ebben a feladatban ugyanazt írjuk meg, mint az előzőben, csak nem C-ben, hanem egy erősen objektum orientált nyelvben, a Java-ban.
         </para>            
+        <para>
+            A program ugyan úgy működik, mint C elődje, szintén a bekért szöveget titkosítja.
+        </para>
     </section>        
     <section>
         <title>C EXOR törő</title>
@@ -840,13 +1133,11 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:       <link xlink:href="https://github.com/salesz9902/prog1/blob/master/exor.c">https://github.com/salesz9902/prog1/blob/master/exor.c</link>         
         </para>
         <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ha tudjuk a kulcsot, illetve a karakterhosszat, könnyen feltörhetjük az exor titkosított kódot az adatok megadásával. Ezzel a módszerrel akár üzenhetünk is társunknak, 
+            illetve olyan szövegeket törhetünk vele, amiről tudjuk mi alapján lett titkosítva.
         </para>            
     </section>        
     <section>
@@ -861,7 +1152,8 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Itt egy neurális hálót készítünk R nyelvben. A neurális háló mesterséges oldala úgy néz ki, hogy megadjuk a programunknak, milyen bemenetre milyen kimenetet adjon, 
+            aztán ezt a programunk ennek alapján elkezdi leutánozni egy bizonyos szinten.
         </para>            
     </section>        
     <section>
@@ -870,14 +1162,30 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             C++
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:      <link xlink:href="https://github.com/salesz9902/prog1/blob/master/nlp.hpp">https://github.com/salesz9902/prog1/blob/master/nlp.hpp</link>
+            <link xlink:href="https://github.com/salesz9902/prog1/blob/master/main.cpp">https://github.com/salesz9902/prog1/blob/master/main.cpp</link>
         </para>
         <para>
-            Megoldás forrása:                
+            Ezt a neuronmodellt a 20. század közepén használták először hatékony képfelismerő algoritmusként.
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
+            A perceptron hátránya, hogy kettőnél több réteg esetén a tanítása nehezen kivitelezhető, ugyanis azok a gradiensereszkedések, melyek egy veszteségfüggvényt próbálnak iteratív módon minimalizálni, 
+            és ehhez a függvény gradiensével számolnak.
+        </para>
+        <para>
+            A programot a következőképpen kell fordítanunk:
+            <programlisting>
+                g++ ql.hpp main.cpp -o perc -lpng
+            </programlisting>
+            Aztán futtatni a következőképp:
+            <programlisting>
+                ./perc (something.png)
+            </programlisting>
+            Használjuk például a mandelbrotnál legenerált png képünket.
+        </para>
+        <para>
+            A program a képünk alapján visszaad egy értéket. 
+        </para>
     </section>        
         
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
@@ -893,26 +1201,44 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
     <section>
         <title>A Mandelbrot halmaz</title>
         <para>
-                
+            Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot.cpp</link>            
         </para>
         <para>
-            Megoldás videó:
+            A Mandelbrot-halmaz a komplex számsíkon különböző pontok halmaza. Van rá egy rekurzív sorozat, amely abszolút értékben korlátos.
+        </para> 
+        <para>
+            A rekurzív sorozat az alábbi:
+            <function>
+                x<subscript>n+1</subscript>:=(x<subscript>n</subscript>)<superscript>2</superscript> + c
+            </function>
         </para>
         <para>
-            Megoldás forrása:                
+            A fenti C++ programban a Mandelbrot-halmazt fogjuk ábrázolni, mégpedig egy <code>.png</code> kiterjesztésű képen.
+        </para>
+        <para>
+            Miután lefordítottuk a kódunkat a következőképpen:
+            <programlisting>
+                g++ mandelbrot.cpp -lpng -o mandel
+            </programlisting>
+            A forráskódban látszik, hogy futtatás után kapunk egy képet kimenet.png néven egész érdekes eredménnyel.
         </para>
     </section>        
         
     <section>
         <title>A Mandelbrot halmaz a <filename>std::complex</filename> osztállyal</title>
         <para>
-                
+            Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp</link>       
         </para>
         <para>
-            Megoldás videó:
+            Ebben a feladatban György Dóra tutoráltja voltam.
         </para>
         <para>
-            Megoldás forrása:                
+            Ezzel a programmal szintén a Mandelbrot-halmazt ábrázoljuk, viszont itt már <code>std::complex</code> osztállyal tesszük meg struktúra alkalmazása helyett.
+            Miután fordítottuk, itt is ugyanazt a képet láthatjuk futtatásnál, mint az előbbinél, csupán a forráskód van másképp kivitelezve.
+        </para> 
+        <para>
+            Itt elhagyjuk a struktúra használatát, helyette osztályt használunk. Talán a struktúra használata talán előnyösebb bizonyos szempontokból, bár egyáltalán
+            nincs köztük olyan nagy különbség, hogy erős okunk legyen rá.
         </para>
     </section>        
                 
@@ -924,11 +1250,18 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás videó: <link xlink:href="https://youtu.be/IJMbgRzY76E">https://youtu.be/IJMbgRzY76E</link>
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/biomorf.cpp">https://github.com/salesz9902/prog1/blob/master/biomorf.cpp</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>                        
+            A biomorfok jelentősen közel állnak a Mandelbrot-halmazhoz, ugyanis itt szintén a komplex számsíkkal dolgozik a programunk.
+        </para>      
+        <para>
+            Programunk fordítása után, a következőképpen futtassuk:
+            <programlisting>
+                ./bmorf bmorf.png 800 800 10 -2 2 -2 2 .285 0 10
+            </programlisting>
+            A fenti esetben ismét egy <code>png</code> kiterjesztésű fájlt fogunk kapni, mégpedig bmorf.png néven. Itt már sokkal színgazdagabb formát fogunk kapni, ami picit látványosabb is.
+        </para>                  
     </section>                     
 
     <section>
@@ -936,10 +1269,19 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <para>
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása:  
         </para>
         <para>
-            Megoldás forrása:  
+            Szintén egy összetett feladattal állunk szemben. Ahhoz, hogy megfelelően tudjuk fordítani/futtatni a programot, telepítenünk kell az 
+            <code>nvidia-cuda-toolkit</code> nevű csomagot.
+        </para>
+        <para>
+            A programunk konkrétan optimalizálni próbálja a "munkánkat", egy gyorsabb számolást eredményez a háttérben, ami nagyon sok esetben nagy segítségünkre 
+            lehet, hiszen ki ne akarná, hogy gyorsabban dolgozzon a gépe.
+        </para>
+        <para>
+            Az optimalizásálásról már korábban is volt szó a könyvben, mégpedig a legelső feladatunkban például, ahol OpenMP segítségével osztottuk fel processzormagokra 
+            a végrehajtandó "munkát".
         </para>
     </section>                     
 
@@ -948,23 +1290,41 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <para>
             Építs GUI-t a Mandelbrot algoritmusra, lehessen egérrel nagyítani egy területet, illetve egy pontot
             egérrel kiválasztva vizualizálja onnan a komplex iteréció bejárta z<subscript>n</subscript> komplex számokat!
-        </para>
-            
-        <para>
             Megoldás forrása:  
         </para>
-
         <para>
-            Megoldás videó: 
+            Megoldás forrása:  <link xlink:href="https://github.com/salesz9902/prog1/tree/master/mandelzoom">https://github.com/salesz9902/prog1/tree/master/mandelzoom</link>
         </para>
         <para>
-            Megoldás forrása:  
+            Ebben a feladatban egy GUI-t fogunk létrehozni a Qt Creator szoftverrel. (Ez egy multiplatformos keretrendszer, amit épp erre (is) találtak ki.)
+        </para>
+        <para>
+            Tehát itt arról van szó, hogy a Qt Creatorban létre tudunk könnyen hozni egy grafikus felületet az előző C++ kódunkhoz, a Mandelbrot-hoz.
+        </para>
+        <para>
+            YouTube-on rengeteg oktatóvideót találhatunk a Qt Creator szoftverről. Itt is van egy:
+        </para>
+        <para>
+            <link href="https://www.youtube.com/watch?v=3SIj6zL6mmA">https://www.youtube.com/watch?v=3SIj6zL6mmA</link>
+        </para>
+        <para>
+            Ebből a videóból már tényleg gond nélkül elindulhatunk egy úton a GUI szerkesztés felé. 
         </para>
     </section>                     
                                                                                                                                                                             
     <section>
         <title>Mandelbrot nagyító és utazó Java nyelven</title>
         <para>
+            Hasonló szituációban vagyunk, mint az előző feladatnál. Annyi változik, hogy már egy jóval felhasználóközelibb, magasabb szintű programozási nyelven 
+            valósítjuk meg, a Javaban.
+        </para>
+        <para>
+            Itt is rengeteg keretrendszerünk van. A programban nagy a testreszabhatóság lehetősége. Mi magunk adhatjuk meg több paramétereit is a programunk elindulásakor 
+            felnyíló ablaknak stb. 
+        </para>
+        <para>
+            A konstruktorban beállíthatjuk a Mandelbrot halmaz paramétereit. Például az élességet. Ami még érdekes lehet számunkra, az nem más, mint a BufferedImage típus, 
+            amit a Java biztosít számunkra. Ez tulajdonképpen egy osztály, ami lehetőséget ad, hogy külső könyvtár használata nélkül is képesek legyünk egyszerűen képfájlokat létrehozni.
         </para>
     </section>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
@@ -986,15 +1346,36 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             nincs eltéve kiszámolt szám.
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat... térj ki arra is, hogy a JDK forrásaiban a Sun programozói
-            pont úgy csinálták meg ahogyan te is, azaz az OO nemhogy nem nehéz, hanem éppen természetes neked!
-        </para>                
+        <screen>
+        <![CDATA[$ /java/bin/java polargen.java
+        -0.7353431820414118
+        -0.33784190028284766
+        0.7750031835316805
+        0.5524713543467192
+        -0.5380423283211784
+        1.512849268596637
+        2.7148874695500966
+        -0.23688836801277952
+        -0.3238588036816322
+        -0.7963150809415576
+        $ /java/bin/java polargen.java
+        -0.6566325405553158
+        0.40465899229436114
+        0.08634239512228409
+        -0.9470321445590416
+        0.1926238606249351
+        0.7705517022243931
+        0.9084531239664848
+        -1.4472688950554047
+        -1.6250659297425345
+        -0.7791586500972545]]>
+		</screen>
+		<para>
+			A program 10 darab véletlenszerűen generált normalizált számot köp ki, ahogyan
+			azt várjuk is.
+</para>               
     </section>        
 
     <section>
@@ -1003,10 +1384,21 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Valósítsd meg C-ben az LZW algoritmus fa-építését!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:    <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>            
         </para>
         <para>
-            Megoldás forrása:                
+            Van egy osztályunk: LZWBinFa, ez építi fel a bináris fájlunkat az általunk beírt bemeneti fájlból.
+            A következőképp kell futtatnunk a kódot: 
+        </para>
+        <para>
+            <code>./bin [bemeneti] -o [kimeneti]</code>
+        </para>
+        <para>
+            A kimeneti fájlhoz értelemszerűen megadjuk, hova szeretnénk kiíratni az eredményt.
+        </para>
+        <para>
+            A programunk sokkal egyszerűbb módon van megírva C-ben. Ugyanis itt már eléggé meg van kötve a kezünk a program 
+            írásában. Mondhatjuk, hogy ugyanaz a programkód, csak leegyszerűsítve, pár dolgot kivéve az eredeti c++ kódunkból.
         </para>
     </section>        
         
@@ -1016,11 +1408,28 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Járd be az előző (inorder bejárású) fát pre- és posztorder is!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:   <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>             
         </para>
         <para>
-            Megoldás forrása:                
+                Inorder: először a fa bal oldalát járjuk be, a gyökeret, aztán majd a jobb oldalát.
         </para>
+        <para>
+                Preorder: gyökérrel indítunk, majd bejárjuk fa bal oldalát, aztán a fa jobb oldalát.
+        </para>
+        <para>
+                Postorder: gyökérrel indítunk, fa jobb oldalát, aztán a fa bal oldalát járjuk be.
+        </para>
+        <para>
+            Itt már viszont a programot picit másképpen futtatjuk:
+        </para>
+        <para>
+            <code>./binfa [bemeneti] -o [kimeneti] [o / r]</code>
+        </para>
+        <para>
+            Ha az utolsó argumentum o, postorder, ha pedig r, akkor inorder bejárást fog alkalmazni.
+        </para>
+        
+        
     </section>        
                         
     <section>
@@ -1030,10 +1439,12 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             osztálya. A gyökér csomópont legyen kompozícióban a fával!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrása:    <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>             
         </para>
         <para>
-            Megoldás forrása:                
+            Itt az alapvetően C alapú LZWBinFa programkódunkat kellene átírni C++-ba. Ez nem feltétlenül bonyolult feladat.
+            Mivel már el kell mozdulnunk picit az objektumorientált irányba, így egy külön osztályba kell megírnunk a fent 
+            említett dolgokat.
         </para>
     </section>        
                 
@@ -1044,10 +1455,12 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             fával!
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása:  <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link> 
         </para>
         <para>
-            Megoldás forrása:  
+            Ebben az esetben a bináris fa gyökere egy mutató kell, hogy legyen. Ez semmit sem változtat a többi, vagy akár 
+            az eredeti LZWBinFa-hoz képest. Ugyanaz a végkimenetele, minden ugyanúgy működik, csak szimplán másképp van 
+            megoldva.
         </para>
     </section>                     
 
@@ -1058,11 +1471,41 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             értékadásra alapozva!
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás forrása:  <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link> 
         </para>
         <para>
-            Megoldás forrása:  
+            Itt használjuk a mozgató-konstruktorokat. A következő változásoknak kell végbemenniük a kódunkban:
         </para>
+            <programlisting language="C++">
+        <![CDATA[Csomopont *  masol ( Csomopont * elem, Csomopont * regifa ) {
+        Csomopont * ujelem = NULL;
+        if ( elem != NULL ) {
+       switch (elem->getBetu()) {
+       case '/':
+               ujelem = new Csomopont ( '/' );
+               break;
+       case '0':
+               ujelem = new Csomopont ( '1' );
+               break;
+       case '1':
+               ujelem = new Csomopont ( '0' );
+               break;
+       default:
+               std::cerr<<"HIBA!"<<std::endl;
+               break;
+       }
+       ujelem->ujEgyesGyermek(
+               masol(elem->egyesGyermek(), regifa)
+       );
+       ujelem->ujNullasGyermek(
+               masol(elem->nullasGyermek(), regifa)
+       );
+       if ( regifa == elem )
+            fa = ujelem;
+        }
+        return ujelem;
+        }]]>
+            </programlisting>
     </section>                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>     
@@ -1087,17 +1530,20 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Megoldás forrása: <link xlink:href=""/>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Nem hiába kapta a feladatunk ezt a nevet. Hiszen programunk a hangyák viselkedését szimulálja le. Figyeljük meg, ahogyan véletlenszerűen 
+            változik az apró pontoknak a helyzete, aztán egyre több lesz belőlük. Egyszer itt gyűlnek össze, egyszer ott. Tisztára olyan viselkedést mutatnak 
+            mint a hangyák egy élő szituációban.
         </para>            
+        <para>
+            Az elején elkezdenek egy adott pontból elindulni. Olyan, mintha egy ételmaradékon összegyűlnének, aztán sorban egymás után elkezdenék haza cipelni azokat. 
+            A hangyáknak ez egy nagyon jellegzetes tulajdonságuk. A programot sokáig hagyhatjuk futni, hiszen a végtelenségig szimulálja a dolgokat számunkra.
+        </para>
     </section>        
     <section>
         <title>Java életjáték</title>
         <para>
             Írd meg Java-ban a John Horton Conway-féle életjátékot, 
             valósítsa meg a sikló-kilövőt!
-        </para>
-        <para>
-            Megoldás videó: 
         </para>
         <para>
             Megoldás forrása: <link xlink:href=""/>               
@@ -1112,28 +1558,38 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Most Qt C++-ban!
         </para>
         <para>
-            Megoldás videó: 
-        </para>
-        <para>
             Megoldás forrása: <link xlink:href=""/>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Ismét egy eléggé árulkodó nevet kaptunk feladatunknak. Itt különböző pici "sejtautók" mozgásának szemtanúi lehetünk! Az apró mozgalmas sejtek 
+            egy-egy élő sejt viselkedését próbálják reprezentálni. Látható, ahogy úgymond legyártódnak a sejtek, aztán elindulnak egymás után egy irányba. 
+        </para>
+        <para>
+            Aztán ahogyan a képernyőnk széléhez érnek, egy újabb részen megjelennek, aztán addig-addig osztódnak, amíg rengeteg nem lesz belőlük.
         </para>            
+        <para>
+            Alapvetően a sejtek a valóságban is hasonlóan működnek. Kell, hogy legyen egy-egy társuk, különben elpusztulnak.
+        </para>
     </section>        
     <section>
         <title>BrainB Benchmark</title>
         <para>
-        </para>
-        <para>
-            Megoldás videó: 
-        </para>
-        <para>
             Megoldás forrása: <link xlink:href=""/>               
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+            Itt a Qt keretrendszer segítségével tudjuk megoldani a feladatot. Fontos, hogy amíg eljutunk addig, hogy a programunk megfelelő környezetben megfelelően 
+            lefordul és lefut, rengeteg helyet kell annak igénybe vennie. Tehát készüljünk fel rá, hogy legyen 20-30 GB szabad helyünk, hogy kényelmes legyen a program 
+            kezelése minden szempontból.
         </para>            
+        <para>
+            A Qt keretrendszer nagyon nagy eszközkészlettel rendelkezik, és rengeteg lehetőségünk van kihasználni ezeket. A nagy eszközkészlet a szükséges letöltött 
+            dolgok méretében is erősen megnyilvánul.
+        </para>
+        <para>
+            E program célja, hogy benchmarkot készítsen egy E-sportoló játékosról. Felmére annak tudását, amely segítségével már könnyen besorolható lesz egy adott 
+            szintre. A program futtatás után, és akár pár perc játék után részletes leírásokat kapunk kimenetként. Ennek segítségével akár már irányt kaphatunk E-sport 
+            karrierünk felépítésében, kérdésében.
+        </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 </chapter>     
@@ -1151,9 +1607,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Python
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
         <para>
@@ -1165,9 +1618,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <title>Szoftmax R MNIST</title>
         <para>
             R            
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:                
@@ -1183,9 +1633,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Python            
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
         <para>
@@ -1199,9 +1646,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
             Keras            
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
         <para>
@@ -1212,9 +1656,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
     <section>
         <title>Robotpszichológia</title>
         <para>
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:                
@@ -1236,12 +1677,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
     <section>
         <title>Iteratív és rekurzív faktoriális Lisp-ben</title>
         <para>
-                
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
     </section>        
@@ -1250,9 +1685,6 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
         <title>Weizenbaum Eliza programja</title>
         <para>
             Éleszd fel Weizenbaum Eliza programját!
-        </para>
-        <para>
-            Megoldás videó:
         </para>
         <para>
             Megoldás forrása:                
@@ -1312,16 +1744,123 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
     <section>
         <title>Omega</title>
         <para>
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
             Megoldás forrása:                
         </para>
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 </chapter>     
+    
+    <chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+        <cover>
+            <para>
+                Programozási tankönyvek rövid olvasónaplói.
+            </para>
+        </cover>
+    </info>
+    <section>
+        <title>Juhász István - Magas szintű programozási nyelvek 1</title>
+        <para>
+            <citation>PICI</citation>
+        </para>
+        <para>
+            Alapfogalmak:
+        </para>
+        <para>
+            Gépi nyelv: A gépi nyelv, egy olyan nyelv, amely a számítógép számára közvetlenül értelmezhető.
+            Kettes vagy tizenhatos számrendszeren alapul (számokkal ábrázolandó). 
+        </para>
+        <para>
+            Magas szintű nyelv: A magas szintű programozási nyelvek már felhasználó közelibbek. Ezek nem értelmezhetőek 
+            közvetlenül a számítógép által. Itt már szükségünk van egy fordítóra, ami lefordítja gépi nyelvre, ahhoz, hogy 
+            futtatható legyen.
+        </para>
+        <para>
+            Gépi nyelvezetű avagy alacsony szintű programnyelv például az Assembly, amelyben sokkal nehezebben igazodunk el, 
+            hisz egyértelműen látszik, hogy a géphez áll közelebb. Viszont magas szintű programnyelv például a C, amelyben 
+            érzékelhetjük is, hogy sokkal jobban érthetőek a C-ben írt kódok, mint akár Assembly-ben. Hisz C-ben mondhatjuk, 
+            hogy angol kulcsszavakkal adunk ki "parancsokat" a számítógép számára, ami persze ugyanúgy lefordul majd gépi 
+            kódra, aztán futtathatóvá is válik.
+        </para>
+        <para>
+            Egy programot tudunk szintaktikailag, illetve szemantikailag elemezni. Szintaktikai elemzésnél konkrétan a 
+            programkódunk "helyesírására" figyelünk. Tehát, hogy nem-e írtunk el egy adott parancsot például, stb.. 
+            Szemantikai elemzésnél már arra figyelünk, hogy miután szintaktikailag helyes a programunk, helyesen fut-e le. 
+            Tehát itt azt nézzük, hogy tényleg azt csinálja-e a programunk, ami a célunk volt vele. Helyesen fut-e le.
+        </para>
+        <para>
+            A programnyelveket két fő csoportba soroljuk: vannak imperatív és dekleratív nyelvek. Az imperatív nyelvek 
+            általában az értékadó utasítások megfelelő sorrendben való kiadására koncentrálnak. Ez az a típus, amelyben 
+            feltehetően többen programoznak, bár nem feltétlenül, de ha valaki komolyabb programozásra vágyik, ezzel a 
+            típussal kezdi el a gyakorlást, majd folytatja a bonyolultabb programokkal. Imperatívak például az eljárásorientált 
+            nyelvek, vagy az objektumorientált nyelvek.
+        </para>
+        <para>
+            A dekleratív csoportba sorolható programkódoknál általában a programíró arra koncentrál, hogy mit szeretne 
+            kapni az adott program futása során. Ilyenek például a funkcionális nyelvek, illetve a logikai nyelvek is.
+        </para>
+        <para>
+            Fontos megjegyezni, hogy elméleti szinten nem fogunk megtanulni programozni. Ezalatt azt értem, hogy ahhoz, hogy 
+            valaki jó programozóvá váljon, rengeteg programkódot kell átvészelnie mind elméletben, de legfőképpen gyakorlatban.
+        </para>
+        <para>
+            Utasítások:
+        </para>
+        <para>
+            Sokféle utasítás létezik. Ilyenek például az értékadó, üres, ugró, elágaztató, ciklusszervező, hívó, I/O illetve 
+            számos egyéb utasítások.
+        </para>
+        <para>
+            Itt azért pár utasítás eléggé magától értendő. Mint például az értékadó utasításokkal egy vagy több változó 
+            értékkomponensét állítjuk be, vagy éppen módosítjuk.
+        </para>
+        <para>
+            Az elágaztató utasítások például az if feltétellel kapcsolatos megoldásokat fedi le, azaz valamilyen feltételes, 
+            kétirányú logikai utasítás. Ezekből vannak egyirányú, illetve többirányúak is. Ide tartozik a switch utasítás is.
+        </para>
+    </section>
+    
+    <section>
+        <title>Kernighan Ritchie - A C programozási nyelv</title>
+        <para>
+            <citation>KERNIGHANRITCHIE</citation>
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/zmfT9miB-jY">https://youtu.be/zmfT9miB-jY</link>
+        </para>
+        <para>
+            Ez a könyv egy tematikusan felépülő könyv, amely a C nyelv elsajátításához segíti hozzá olvasóját. Próbálja 
+            megismertetni a C nyelvet elég erős szinten, próbál bizonyos keretek között picit mélyebben belemenni a dolgokba.
+        </para>
+        <para>
+            A könyv alapismeretekkel indít. Hamar lényegre is tör, hiszen már egy "Hello World!" stílusú program megírásával 
+            szemléltet az olvasó felé. Erősen ragaszkodik a UNIX-on való fordításra, illetve futtatásra.
+        </para>
+        <para>
+            Bemutatja a szokásos alap programozási eszközöket. Mint például ciklusok (for, while, do-while), a változó deklarálásától 
+            megkezdve a tömbökön át a függvényekig. Kitér külön a változótípusokra, amik működését el is magyarázza, több példán keresztül bemutatja.
+        </para>
+        <para>
+            Már viszonylag hamar elkezdődnek folyamatos rövid példákkal való szemléltetések, illetve a programkódok kipróbálásra való 
+            késztetések. A fent leírtak mindegyike érthető módon be van mutatva, le van egyszerű programokba bonyolítva, amelyek 
+            értelemszerűen a lehető legjobb megérttetésre törekednek.
+        </para>
+    </section>
+    
+    <section>
+        <title>Programozás</title>
+        <para>
+            <citation>BMECPP</citation>
+        </para>
+        <para>
+            A könyvet még nem sikerült beszerezni, így erről nem tudtam elkezdeni megírni az olvasónaplót. 
+        </para>
+    </section>
+</chapter>
     
             
 </part>                                                              
