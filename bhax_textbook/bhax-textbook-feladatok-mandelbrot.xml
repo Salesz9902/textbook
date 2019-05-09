@@ -37,6 +37,9 @@
             Megoldás forrása:    <link xlink:href="https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp">https://github.com/salesz9902/prog1/blob/master/mandelbrot2.cpp</link>       
         </para>
         <para>
+            Ebben a feladatban György Dóra tutoráltja voltam.
+        </para>
+        <para>
             Ezzel a programmal szintén a Mandelbrot-halmazt ábrázoljuk, viszont itt már <code>std::complex</code> osztállyal tesszük meg struktúra alkalmazása helyett.
             Miután fordítottuk, itt is ugyanazt a képet láthatjuk futtatásnál, mint az előbbinél, csupán a forráskód van másképp kivitelezve.
         </para> 

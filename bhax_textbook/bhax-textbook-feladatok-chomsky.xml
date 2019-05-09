@@ -55,6 +55,57 @@
         <para>
             Noam Chomsky szintén egy nyelvész volt, akinek a fenti nyelv grammatikáját is köszönhetjük. Érdekes módon rengeteg kiemelkedő foglalkozása mellett informatikus is volt.
         </para>
+        <programlisting>
+                <![CDATA[S, X, Y: „változók” (a nemterminálisok)
+        a, b, c: „konstansok” (a terminálisok)
+        S → abc, S → aXbc, Xb → bX, Xc → Ybcc, bY → Yb, aY -> aaX, aY → aa (a helyettesítési szabályok)
+        S (a mondatszimbólum)
+
+            S (S → aXbc)
+            aXbc (Xb → bX)
+            abXc (Xc → Ybcc)
+            abYbcc (bY → Yb)
+            aabbcc
+
+            S (S → aXbc)
+            aXbc (Xb → bX)
+            abXc (Xc → Ybcc)
+            abYbcc (bY → Yb)
+            aYbbcc (aY -> aaX)
+            aaXbbcc (Xb → bX)
+            aabXbcc (Xb → bX)
+            aabbXcc (Xc → Ybcc)
+            aabbYbccc (bY → Yb)
+            aabYbbccc (bY → Yb)
+            aaYbbbccc (aY → aa)
+            aaabbbccc]]> 
+        </programlisting>
+        <programlisting>
+            <![CDATA[A, B, C: „változók” (a nemterminálisok)
+            a, b, c: „konstansok” (a terminálisok)
+            A → aAB, A → aC, CB → bCc, cB → Bc, C → bc (a képzési szabályok) 
+            S (A kezdőszimbólum)
+
+                A (A → aAB)
+                aAB ( A → aC)
+                aaCB (CB → bCc)
+                aabCc (C → bc)
+                aabbcc
+
+                A (A → aAB)
+                aAB ( A → aAB)
+                aaABB ( A → aAB)
+                aaaABBB ( A → aC)
+                aaaaCBBB (CB → bCc)
+                aaaabCcBB (cB → Bc)
+                aaaabCBcB (cB → Bc)
+                aaaabCBBc (CB → bCc)
+                aaaabbCcBc (cB → Bc)
+                aaaabbCBcc (CB → bCc)
+                aaaabbbCccc (C → bc)
+                aaaabbbbcccc]]> 
+        </programlisting>
+
     </section>        
                 
     <section>

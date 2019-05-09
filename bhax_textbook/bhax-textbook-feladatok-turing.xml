@@ -39,7 +39,7 @@
         <mediaobject>
             
             <imageobject>
-                <imagedata fileref="../images/procheating.png"/>
+                <imagedata fileref="../pictures/procheating.png"/>
             </imageobject>
             
             <caption>
@@ -129,6 +129,8 @@ false]]></screen>
         </para>
         <para>
             Ezt a programot matematikailag lehetetlen megírni számunkra. Ugyanis ilyen program, mint a feladat közben is olvashatjuk nem hozható létre.
+            Ha elkezdjük boncolgatni a problémát, újabb problémába ütközünk, hiszen hamar ellentmondást kapunk a dolgok vizsgálata kapcsán... Elvégre többször 
+            is bizonyítva volt már sok nagyobb ember által is, hogy a program nem megírható.
         </para>
     </section>        
                 
@@ -203,7 +205,7 @@ false]]></screen>
         <title>Labdapattogás</title>
         <para>
             Először if-ekkel, majd bármiféle logikai utasítás vagy kifejezés
-            nasználata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
+            használata nélkül írj egy olyan programot, ami egy labdát pattogtat a karakteres konzolon! (Hogy mit értek
             pattogtatás alatt, alább láthatod a videókon.)
         </para>
         <para>
@@ -228,46 +230,46 @@ false]]></screen>
         <para>
             Az if nélküli módszer 
             <programlisting language="c"><![CDATA[Program procheating
-{
-	#include <stdio.h>
-#include <stdlib.h>
-#include <curses.h>
-#include <unistd.h>
+            {
+                    #include <stdio.h>
+            #include <stdlib.h>
+            #include <curses.h>
+            #include <unistd.h>
 
-int main(void)
-{
-    int xj = 0, xk = 0, yj = 0, yk = 0;
-    int mx = 80 * 2, my = 24 * 2;
+            int main(void)
+            {
+                int xj = 0, xk = 0, yj = 0, yk = 0;
+                int mx = 80 * 2, my = 24 * 2;
 
-    WINDOW *ablak;
-    ablak = initscr();
-    noecho ();
-    cbreak ();
-    nodelay (ablak,true);
+                WINDOW *ablak;
+                ablak = initscr();
+                noecho ();
+                cbreak ();
+                nodelay (ablak,true);
 
-    for (;;)
-    {
-        xj = (xj - 1) % mx;
-        xk = (xk + 1) % mx;
+                for (;;)
+                {
+                    xj = (xj - 1) % mx;
+                    xk = (xk + 1) % mx;
 
-        yj = (yj - 1) % my;
-        yk = (yk + 1) % my;
+                    yj = (yj - 1) % my;
+                    yk = (yk + 1) % my;
 
-        clear();
+                    clear();
 
-        mvprintw(0, 0,
-                 "---------------------------------------------------------------");
-                 mvprintw(24, 0,
-                 "---------------------------------------------------------------");
-                 mvprintw(abs ((yj + (my - yk)) / 2),
-                            abs ((xj + (mx - xk)) / 2), "X");
-        refresh();
-        usleep(150000);
-    }
-    return 0;
-}
+                    mvprintw(0, 0,
+                             "---------------------------------------------------------------");
+                             mvprintw(24, 0,
+                             "---------------------------------------------------------------");
+                             mvprintw(abs ((yj + (my - yk)) / 2),
+                                        abs ((xj + (mx - xk)) / 2), "X");
+                    refresh();
+                    usleep(150000);
+                }
+                return 0;
+            }
 
-}]]></programlisting>
+            }]]></programlisting>
         </para>
     </section>                     
 
@@ -286,7 +288,7 @@ int main(void)
         <mediaobject>
             
             <imageobject>
-                <imagedata fileref="../images/bogomips.png"/>
+                <imagedata fileref="../pictures/bogomips.png"/>
             </imageobject>
             
             <caption>
@@ -327,7 +329,7 @@ int main(void)
             A Brun tétel az ikerprímszámok reciprokaiból képez sorösszegeket, Brun konstans néven ismert véges értékhez konvergál. 
         </para>
         <para>
-            A példánkban egy olyan programot írtunk, amely próbálja megközelíteni a Brun konstans értékét. Tehát kiszámolja az ikerprímeker, összegzi a reciprokaikat és részeredményt mutat.
+            A példánkban egy olyan programot írtunk, amely próbálja megközelíteni a Brun konstans értékét. Tehát kiszámolja az ikerprímeket, összegzi a reciprokaikat és részeredményt mutat.
         </para>
         <para>
             Tisztázzuk az ikerprím fogalmát:
@@ -347,6 +349,9 @@ int main(void)
             Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/montyhall.r">https://github.com/salesz9902/prog1/blob/master/montyhall.r</link>
         </para>
         <para>
+            Kép forrása: <link xlink:href="https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/">https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/</link>
+        </para>
+        <para>
             A Monty Hall egy valószínűségi paradoxon. Az Egyesült Államokban, a Let's Make a Deal televíziós vetélkedő egyik feladatán alapul. Nevét a műsorvezetőről, Monty Hall-ról kapta.
         </para>
         <para>
@@ -358,6 +363,18 @@ int main(void)
             Először tegyük fel, hogy van 1-es 2-es és 3-as ajtónk. A játékosunk először a 3-as ajtót választja. Itt 1/3 eséllyel lesz értékes tárgy. Majd kinyílik a 2-es ajtó. Ez egy 
             értéktelen tárgy lett, ezért ott 0 eséllyel lesz értékes, viszont a mellette lévőben 2/3 az esély.
         </para>
+        <mediaobject>
+            
+            <imageobject>
+                <imagedata fileref="../pictures/montyhall.jpg"/>
+            </imageobject>
+            
+            <caption>
+                <para>Az egyik ajtó mögött egy autó, másik kettő mögött kecske található. Az autót keressük. Képen egyértelműen láthatjuk mennyi eséllyel találjuk meg az autót az 
+                ajtókban, így, hogy már 1 ajtót kinyitottunk, amiben kecske van.</para>
+            </caption>
+            
+        </mediaobject> 
     </section>
 
 </chapter>                
