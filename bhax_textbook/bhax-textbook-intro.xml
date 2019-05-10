@@ -49,5 +49,25 @@
                 </listitem>
             </itemizedlist> 
         </section>
+        <section>
+            <title>Pár információ a könyv írásával kapcsolatban</title>
+                    <para>
+                        A könyvet egy Dell Latitude E5570 notebookon írtam már az elejétől kezdve. Oracle VM VirtualBox program segítségével felsetupoltam egy virtuális gépet, mégpedig 
+                        pontosabban Ubuntu Linux 18.04 disztró, verzió alatt vittem végig. Választásom azért az Ubuntu Linuxra esett, mert eddig ebben a linuxban volt elég tapasztalatom
+                        ahhoz, hogy gördülékenyen menjenek a dolgok.
+                    </para>
+                    <para>
+                        A programokat Visual Studio Code-ban írtam, terminálban fordítottam gcc-vel, illetve az Apache Netbeans 11.0-t használtam a könyv szerkesztésére. Az XML olyan 
+                        szempontból új volt számomra, hogy nem írtam még benne kódot, mindezek ellenére egész hamar bele lehet tanulni a dolgokba, könnyen tanulható, egyszerű nyelv.
+                    </para>
+                    <para>
+                        Utólag sajnálom, hogy későn tanultam meg használni a git-et linuxon, hiszen sokkal átláthatóbban lehet vezetni a repositorynkat, mintsem grafikus módon 
+                        összekattingatjuk a böngészőben.
+                    </para>
+                    <para>
+                        Azt gondolom, hogy eme könyv írása megtanít minket többek között arra, hogy hogyan dokumentáljuk kódjainkat, hogyan kezeljük azokat, illetve erős alapot ad 
+                        a jövőre nézve ezekkel kapcsolatban.
+                    </para>
+        </section>
     </chapter>                
 </part>  

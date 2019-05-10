@@ -52,7 +52,7 @@
             Valósítsd meg C-ben az LZW algoritmus fa-építését!
         </para>
         <para>
-            Megoldás forrása:    <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>            
+            Megoldás forrása:    <link href="https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp">https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp</link>            
         </para>
         <para>
             Van egy osztályunk: LZWBinFa, ez építi fel a bináris fájlunkat az általunk beírt bemeneti fájlból.
@@ -76,7 +76,7 @@
             Járd be az előző (inorder bejárású) fát pre- és posztorder is!
         </para>
         <para>
-            Megoldás forrása:   <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>             
+            Megoldás forrása:   <link href="https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp">https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp</link>             
         </para>
         <para>
                 Inorder: először a fa bal oldalát járjuk be, a gyökeret, aztán majd a jobb oldalát.
@@ -107,7 +107,7 @@
             osztálya. A gyökér csomópont legyen kompozícióban a fával!
         </para>
         <para>
-            Megoldás forrása:    <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link>             
+            Megoldás forrása:    <link href="https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp">https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp</link>             
         </para>
         <para>
             Itt az alapvetően C alapú LZWBinFa programkódunkat kellene átírni C++-ba. Ez nem feltétlenül bonyolult feladat.
@@ -123,7 +123,7 @@
             fával!
         </para>
         <para>
-            Megoldás forrása:  <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link> 
+            Megoldás forrása:  <link href="https://github.com/salesz9902/textbook/blob/master/files/welch/mutato_a_gyok.cpp">https://github.com/salesz9902/textbook/blob/master/files/welch/mutato_a_gyok.cpp</link> 
         </para>
         <para>
             Ebben az esetben a bináris fa gyökere egy mutató kell, hogy legyen. Ez semmit sem változtat a többi, vagy akár 
@@ -139,7 +139,7 @@
             értékadásra alapozva!
         </para>
         <para>
-            Megoldás forrása:  <link href="https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp">https://github.com/salesz9902/prog1/blob/master/welch/z3a7.cpp</link> 
+            Megoldás forrása:  <link href="https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp">https://github.com/salesz9902/textbook/blob/master/files/welch/z3a7.cpp</link> 
         </para>
         <para>
             Itt használjuk a mozgató-konstruktorokat. A következő változásoknak kell végbemenniük a kódunkban:

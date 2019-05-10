@@ -138,7 +138,7 @@ false]]></screen>
         <title>Változók értékének felcserélése</title>
         <para>
             Írj olyan C programot, amely felcseréli két változó értékét, bármiféle logikai utasítás vagy kifejezés
-            nasználata nélkül!
+            használata nélkül!
         </para>
         <para>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/10_begin_goto_20_avagy_elindulunk">https://bhaxor.blog.hu/2018/08/28/10_begin_goto_20_avagy_elindulunk</link>
@@ -212,8 +212,10 @@ false]]></screen>
             Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/08/28/labdapattogas">https://bhaxor.blog.hu/2018/08/28/labdapattogas</link>
         </para>
         <para>
-            Megoldás forrása:  <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bouncingball.c">https://github.com/Salesz9902/prog1/blob/master/bouncingball.c
-            <filename>/prog1/blob/master/bouncingball.c</filename></link>
+            Megoldás forrása:  <link xlink:href="https://github.com/salesz9902/textbook/blob/master/files/turing/bouncingball.c">https://github.com/salesz9902/textbook/blob/master/files/turing/bouncingball.c</link>
+        </para>
+        <para>
+            <command>A programkódok Bátfai Norbert tulajdonában állnak.</command>
         </para>
         <para>
             Ahhoz, hogy a programot megfelelően tudjuk fordítani, használnunk kell a <function>-lncurses</function> kapcsolót a következő módon:
@@ -280,10 +282,68 @@ false]]></screen>
             Használd ugyanazt a while ciklus fejet, amit Linus Torvalds a BogoMIPS rutinjában! 
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/bogomips.c">https://github.com/Salesz9902/prog1/blob/master/bogomips.c</link>
+        <command>A programkód Bátfai Norbert tulajdonában áll.</command>
+        </para>
+        <para>
+            <command>A feladat kidolgozásához Racs Tamás könyvét használtam.</command>
+        </para>
+        <para>
+            Megoldás forrása:
+            <programlisting language="c"><![CDATA[Program BogoMIPS
+                {
+                #include <time.h>
+                #include <stdio.h>
+
+                void
+                delay (unsigned long long int loops)
+                {
+                unsigned long long int i;
+                for (i = 0; i < loops; i++);
+                }
+
+                int
+                main (void)
+                {
+                unsigned long long int loops_per_sec = 1;
+                unsigned long long int ticks;
+
+                printf ("Calibrating delay loop..");
+                fflush (stdout);
+
+                while ((loops_per_sec <<= 1))
+                {
+                ticks = clock ();
+                delay (loops_per_sec);
+                ticks = clock () - ticks;
+
+                printf ("%llu %llu\n", ticks, loops_per_sec);
+
+                if (ticks >= CLOCKS_PER_SEC)
+                {
+                loops_per_sec = (loops_per_sec / ticks) * CLOCKS_PER_SEC;
+
+                printf ("ok - %llu.%02llu BogoMIPS\n", loops_per_sec / 500000,
+                (loops_per_sec / 5000) % 100);
+
+                return 0;
+                }
+                }
+
+                printf ("failed\n");
+                return -1;
+                }
+                }
+                }]]>
+                
+            </programlisting>
         </para>
         <para>
             A BogoMIPS a processzor egy magjának a gyorsaságát méri meg 1 másodperc alatt. Sokan így akarják összehasonlítani számítógépük erősségét, ezt nem erre találták ki.
+            Nyílvánvalóan ez nem lesz annyira pontos, bár eléggé jól megközelíti a valóságot. A programunk kimenetének második oszlopában a 2 hatványai szerepelnek.
+            Az első oszlop pedig azt mutatja meg, hogy egyes lépésközzel mennyi ideig jutott el a 0-tól az adott hatvány számolásáig, azaz hányszor tickelt a processzorunk.
+        </para>
+        <para>
+            A program futtatása során az alábbi értékeket kapom:
         </para>
         <mediaobject>
             
@@ -305,14 +365,88 @@ false]]></screen>
             értékét!
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/pagerank.c">https://github.com/Salesz9902/prog1/blob/master/pagerank.c</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/textbook/blob/master/files/turing/pagerank.c">https://github.com/salesz9902/textbook/blob/master/files/turing/pagerank.c</link>
+        </para>
+        <programlisting language="c"><![CDATA[
+            {
+            #include <stdio.h>
+            #include <math.h>
+
+            void
+            kiir (double tomb[], int db)
+            {
+              int i;
+
+              for (i = 0; i < db; ++i)
+                printf ("%f\n", tomb[i]);
+            }
+
+            double
+            tavolsag (double PR[], double PRv[], int n)
+            {
+              double osszeg = 0.0;
+              int i;
+
+              for (i = 0; i < n; ++i)
+                osszeg += (PRv[i] - PR[i]) * (PRv[i] - PR[i]);
+
+              return sqrt(osszeg);
+            }
+
+            int
+            main (void)
+            {
+
+              double L[4][4] = {
+                {0.0, 0.0, 1.0 / 3.0, 0.0},
+                {1.0, 1.0 / 2.0, 1.0 / 3.0, 1.0},
+                {0.0, 1.0 / 2.0, 0.0, 0.0},
+                {0.0, 0.0, 1.0 / 3.0, 0.0}
+              };
+
+              double PR[4] = { 0.0, 0.0, 0.0, 0.0 };
+              double PRv[4] = { 1.0 / 4.0, 1.0 / 4.0, 1.0 / 4.0, 1.0 / 4.0 };
+
+              int i, j;
+
+              for (;;)
+                {
+
+                  for (i = 0; i < 4; ++i)
+                    {
+                      PR[i] = 0.0;
+                      for (j = 0; j < 4; ++j)
+                        PR[i] += (L[i][j] * PRv[j]);
+                    }
+                  if (tavolsag (PR, PRv, 4) < 0.00000001)
+                    break;
+
+                  for (i = 0; i < 4; ++i)
+                    PRv[i] = PR[i];
+
+                }
+
+              kiir (PR, 4);
+
+              return 0;
+            }
+            }]]>
+            
+        </programlisting>
+        <para>
+        <command>A programkód Bátfai Norbert tulajdonában áll.</command>
         </para>
         <para>
             A PageRank egy olyan algoritmus, amely linkekhez számokat rendel, majd azokat sorrendbe teszi a hálózatban betöltött szerepük alapján. A Google keresőmotorjának ez az egyik
             legfontosabb eleme. A PageRank szó egyben a a Google bejegyzett védjegye.
         </para>
         <para>
-            Ez alapján egyértelműen látjuk, hogy melyik weboldal mennyire fontos, és segítségével hasznos listát tudunk felállítani az oldalak fontosságáról.
+            Ez alapján egyértelműen látjuk, hogy melyik weboldal mennyire fontos, és segítségével hasznos listát tudunk felállítani az oldalak fontosságáról. Nyílvánvalóan ez 
+            nem jelenti azt, hogy ha a Google keresőnk ötödjére jelenít meg valamit, hogy nem annyira validok rajta az információk, mintsem az első helyen szereplőnek.
+            Közel sem... hiszen ez a kattintásokat veszi figyelembe, ami az oldal népszerűségében nyílvánul meg.
+        </para>
+        <para>
+            A PageRank-ra a következő a képlet: PageRank(i) = (1-d) + d * (Pagerank(j)/L(j))
         </para>
         
     </section>
@@ -323,7 +457,28 @@ false]]></screen>
             Írj R szimulációt a Brun tétel demonstrálására!
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/brun.r">https://github.com/salesz9902/prog1/blob/master/brun.r</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/textbook/blob/master/files/turing/brun.r">https://github.com/salesz9902/textbook/blob/master/files/turing/brun.r</link>
+        </para>
+        <programlisting language="r"><![CDATA[Bruntetel
+            {
+            library(matlab)
+
+            stp <- function(x){
+
+                primes = primes(x)
+                diff = primes[2:length(primes)]-primes[1:length(primes)-1]
+                idx = which(diff==2)
+                t1primes = primes[idx]
+                t2primes = primes[idx]+2
+                rt1plust2 = 1/t1primes+1/t2primes
+                return(sum(rt1plust2))
+            }
+            }
+            ]]>
+            
+        </programlisting>
+        <para>
+        <command>A programkód Bátfai Norbert tulajdonában áll.</command>
         </para>
         <para>
             A Brun tétel az ikerprímszámok reciprokaiból képez sorösszegeket, Brun konstans néven ismert véges értékhez konvergál. 
@@ -346,10 +501,58 @@ false]]></screen>
             Írj R szimulációt a Monty Hall problémára!
         </para>
         <para>
-            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/prog1/blob/master/montyhall.r">https://github.com/salesz9902/prog1/blob/master/montyhall.r</link>
+            Megoldás forrása: <link xlink:href="https://github.com/salesz9902/textbook/blob/master/files/turing/montyhall.r">https://github.com/salesz9902/textbook/blob/master/files/turing/montyhall.r</link>
         </para>
         <para>
             Kép forrása: <link xlink:href="https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/">https://probabilityandstats.wordpress.com/2017/05/11/monty-hall-problem/</link>
+        </para>
+        <programlisting language="r"><![CDATA[Montyhall
+            {
+            kiserletek_szama=10000000
+            kiserlet = sample(1:3, kiserletek_szama, replace=T)
+            jatekos = sample(1:3, kiserletek_szama, replace=T)
+            musorvezeto=vector(length = kiserletek_szama)
+
+            for (i in 1:kiserletek_szama) {
+
+                if(kiserlet[i]==jatekos[i]){
+
+                    mibol=setdiff(c(1,2,3), kiserlet[i])
+
+                }else{
+
+                    mibol=setdiff(c(1,2,3), c(kiserlet[i], jatekos[i]))
+
+                }
+
+                musorvezeto[i] = mibol[sample(1:length(mibol),1)]
+
+            }
+
+            nemvaltoztatesnyer= which(kiserlet==jatekos)
+            valtoztat=vector(length = kiserletek_szama)
+
+            for (i in 1:kiserletek_szama) {
+
+                holvalt = setdiff(c(1,2,3), c(musorvezeto[i], jatekos[i]))
+                valtoztat[i] = holvalt[sample(1:length(holvalt),1)]
+
+            }
+
+            valtoztatesnyer = which(kiserlet==valtoztat)
+
+
+            sprintf("Kiserletek szama: %i", kiserletek_szama)
+            length(nemvaltoztatesnyer)
+            length(valtoztatesnyer)
+            length(nemvaltoztatesnyer)/length(valtoztatesnyer)
+            length(nemvaltoztatesnyer)+length(valtoztatesnyer)
+            }
+            ]]>
+            
+        </programlisting>
+        <para>
+        <command>A programkód Bátfai Norbert tulajdonában áll.</command>
         </para>
         <para>
             A Monty Hall egy valószínűségi paradoxon. Az Egyesült Államokban, a Let's Make a Deal televíziós vetélkedő egyik feladatán alapul. Nevét a műsorvezetőről, Monty Hall-ról kapta.
