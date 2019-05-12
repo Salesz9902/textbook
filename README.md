@@ -14,8 +14,7 @@ Textbook about my done tasks. Required to High level programming languages 1.
 # Generating the book:
 ```
 cd bhax_textbook/
-make bhax-textbook_fdl.pdf
+make
 ```
-For some reason without writing the name of the book gives an error message.
 
 Forked from: https://gitlab.com/nbatfai/bhax/tree/master/thematic_tutorials/bhax_textbook
