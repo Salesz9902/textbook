@@ -11,7 +11,7 @@
             Állapotátmenet gráfjával megadva írd meg ezt a gépet!
         </para>
         <para>
-            Megoldás forrása:   <link href="https://github.com/salesz9902/textbook/blob/master/files/chomsky/binarunary.c">https://github.com/salesz9902/textbook/blob/master/files/chomsky/binarunary.c</link>    
+            Megoldás forrása:   <link xlink:href="https://github.com/salesz9902/textbook/blob/master/files/chomsky/binarunary.c">https://github.com/salesz9902/textbook/blob/master/files/chomsky/binarunary.c</link>    
         </para>
         <para>
             <command>A programkód Molnár Antal Albert tulajdonában van, picit módosítva lett általam.</command>
@@ -190,7 +190,7 @@
             Lexelj össze egy l33t ciphert!
         </para>
         <para>
-            Megoldás forrása: <link href="https://github.com/Salesz9902/prog1/blob/master/l33t.c">https://github.com/Salesz9902/prog1/blob/master/l33t.c</link> 
+            Megoldás forrása: <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/l33t.c">https://github.com/Salesz9902/prog1/blob/master/l33t.c</link> 
         </para>
         <para>
             <command>A programkód Bátfai Norbert tulajdonában áll.</command>
@@ -302,12 +302,13 @@
             A leet nyelv egy internetes nyelv. Bizonyos betű karaktereket számokkal helyettesítünk, amik erősen hasonlítanak a betűkhöz.
         </para>
         <para>
-            <programlisting>
+            <programlisting><![CDATA[[
             Például:
             3 = E
             4 = A
             1 = l
             7 = T
+                ]]>
             </programlisting>
             A fentiek ismeretében rájöhetünk, hogy a leet szó => 1337 leet nyelven írva. De akár írhatjuk így is: l33t 
         </para>
@@ -524,7 +525,7 @@ $(\exists y \forall x (y<x) \supset \neg (x \text{ prím}))$
 
 
         <para>
-            Megoldás forrása:  <link href="https://github.com/Salesz9902/prog1/blob/master/deklaracio.c">https://github.com/Salesz9902/prog1/blob/master/deklaracio.c</link>
+            Megoldás forrása:  <link xlink:href="https://github.com/Salesz9902/prog1/blob/master/deklaracio.c">https://github.com/Salesz9902/prog1/blob/master/deklaracio.c</link>
         </para>
         <para>
             Már a legkisebb programokban is találhatunk változó vagy függvénydeklarációt. Ezek kulcsfontosságúak számunkra, hiszen így tudunk tárolni adatokat egyszerűen amiket

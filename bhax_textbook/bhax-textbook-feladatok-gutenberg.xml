@@ -155,7 +155,7 @@
         <para>
             Paraméter referenciatípussal: 
             C-ben kizárólag érték szerinti paraméterátadás történik, így az <function>f</function> függvény hívásakor az <function>a</function> változó értéke a veremre 
-            másolódik, és erre kell hivatkoznunk az <functon>i</functon> szimbólummal az <function>f</function> függvényen belül. 
+            másolódik, és erre kell hivatkoznunk az <function>i</function> szimbólummal az <function>f</function> függvényen belül. 
         </para>
         <para>
             A 3. részben már rá is tér a könyvünk az objektumokra és osztályokra. Ebben a fejezetben egész jól el van magyarázva az objektumorientáltság alapja.
